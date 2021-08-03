@@ -1,0 +1,4 @@
+"C:\Program Files\JetBrains\CLion 2021.2\bin\cmake\win\bin\cmake.exe" -DCMAKE_BUILD_TYPE=Debug -DCMAKE_DEPENDS_USE_COMPILER=FALSE -G "CodeBlocks - MinGW Makefiles" "C:\Librairies graphique\Projects\j03-lib-graphique-aout-2021-fetra\Exo1Jour2"
+-- Configuring done
+-- Generating done
+-- Build files have been written to: C:/Librairies graphique/Projects/j03-lib-graphique-aout-2021-fetra/Exo1Jour2/cmake-build-debug

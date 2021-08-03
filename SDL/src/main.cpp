@@ -76,7 +76,7 @@ int main(int argc, char **args) {
         //std::cout << 100 * (cursor.x - 20) / (sliderBar.w) << std::endl;
 
 
-
+        //Print
         for (SDL_Rect *r : rects) {
             SDL_SetRenderDrawColor(renderer, rand()% 255, rand()% 255, rand()% 255, 0);
             SDL_RenderFillRect(renderer, r);
