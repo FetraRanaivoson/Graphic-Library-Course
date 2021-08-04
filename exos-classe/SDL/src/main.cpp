@@ -1,6 +1,8 @@
 #include <iostream>
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
+#include <stdlib.h>
+#include <time.h>
 
 #include <vector>
 
@@ -11,6 +13,8 @@ int width = 800, height = 600;
 void CreateUI(SDL_Rect &rectUp, SDL_Rect &rectBottom, SDL_Rect &sliderBar, SDL_Rect &cursor);
 
 int main(int argc, char **args) {
+    srand(time(NULL));
+
     bool isRunning = true;
     SDL_Init(SDL_INIT_EVERYTHING);
     SDL_CreateWindowAndRenderer(width, height, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC, &win, &renderer);
@@ -25,6 +29,7 @@ int main(int argc, char **args) {
     const Uint8 *state = 0;
 
     std::vector<SDL_Rect *> rects;
+
 
     while (isRunning) {
         SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
@@ -46,17 +51,16 @@ int main(int argc, char **args) {
 
         state = SDL_GetKeyboardState(NULL);
 
-        srand((unsigned int) time(NULL));
 
         if (state[SDL_SCANCODE_RIGHT]) {
-            cursor.x+= 5;
+            cursor.x += 5;
             //int nbSquare = 100 * (cursor.x - 20) / (sliderBar.w);
 
-            SDL_Rect *rect  = new SDL_Rect();
-            rect->x = rand() % width ;
-            rect->y = rand() % height;
-            rect->w = 10;
-            rect->h = 10;
+            SDL_Rect *rect = new SDL_Rect();
+            rect->x = rand() % width;
+            rect->y = rand() % rectBottom.y - 25;
+            rect->w = 25;
+            rect->h = 25;
 
             rects.push_back(rect);
         }
@@ -64,8 +68,12 @@ int main(int argc, char **args) {
         if (state[SDL_SCANCODE_ESCAPE])
             isRunning = false;
 
-        if (state[SDL_SCANCODE_LEFT])
-            cursor.x-=5;
+        if (state[SDL_SCANCODE_LEFT]) {
+            cursor.x -= 5;
+            if (rects.size() > 0)
+                rects.pop_back();
+        }
+
 
         if (cursor.x < sliderBar.x)
             cursor.x = sliderBar.x;
@@ -78,11 +86,11 @@ int main(int argc, char **args) {
 
         //Print
         for (SDL_Rect *r : rects) {
-            SDL_SetRenderDrawColor(renderer, rand()% 255, rand()% 255, rand()% 255, 0);
+            r->x = rand() % width;
+            r->y = rand() % rectBottom.y -25;
+            SDL_SetRenderDrawColor(renderer, rand() % 255, rand() % 255, rand() % 255, 0);
             SDL_RenderFillRect(renderer, r);
         }
-
-
 
 
         SDL_Delay(15);
