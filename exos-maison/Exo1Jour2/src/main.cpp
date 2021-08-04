@@ -21,9 +21,10 @@ int main(int argc, char **args) {
 //    rect.w = 50;
 //    rect.h = 50;
 
-    FileManager *fileManager = new FileManager();
+
     int columnCount = 10;
     int rowCount = 7;
+    FileManager *fileManager = new FileManager();
     // ACTIVATE THIS TO APPEND A SET OF RANDOM BINARY NUMBER (col x row) TO FILE
     //fileManager->saveRandomBinaryNumbers(columnCount, rowCount);
 
@@ -40,12 +41,13 @@ int main(int argc, char **args) {
     } else std::cout << "No data to retrieve" << std::endl;
 
 
-    int squareSpacing = 0;
+    int squareSpacingX = width / columnCount;
+    int squareSpacingY = height / rowCount;
     SDL_Rect rect;
-    rect.x = 0 + squareSpacing;
-    rect.y = 0;
-    rect.w = 60;
-    rect.h = 60;
+//    rect.x = 0 + squareSpacing;
+//    rect.y = 0;
+    rect.w = squareSpacingX;
+    rect.h = squareSpacingY;
 
     while (isRunning) {
         SDL_SetRenderDrawColor(renderer, 200, 200, 200, 0);
@@ -57,17 +59,17 @@ int main(int argc, char **args) {
             for (int col = 0; col < columnCount; col++) {
                 if (retrievedNumbers[row]->getNumber(col) == 0) {
                     SDL_SetRenderDrawColor(renderer, 255, 255, 255, 0);
-                    rect.x += 0 + squareSpacing;
-
                 } else if (retrievedNumbers[row]->getNumber(col) == 1) {
                     SDL_SetRenderDrawColor(renderer, 0, 0, 0, 0);
-                    rect.x += 0 + squareSpacing;
                 }
+                rect.x = col * squareSpacingX;
+                rect.y = row * squareSpacingY;
+                SDL_RenderFillRect(renderer, &rect);
             }
         }
 
 
-        SDL_RenderFillRect(renderer, &rect);
+
         //squareSpacing ++;
 
         if (event.key.keysym.scancode == SDL_SCANCODE_ESCAPE) {
@@ -75,6 +77,7 @@ int main(int argc, char **args) {
         }
 
         SDL_RenderPresent(renderer);
+        SDL_Delay(1);
 
     }
 

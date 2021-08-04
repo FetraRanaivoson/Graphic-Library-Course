@@ -5,8 +5,11 @@
 #include "FileManager.h"
 
 
-FileManager::FileManager() {
-
+FileManager::FileManager(int windowWidth, int windowHeight, int squareWidth, int squareHeight) {
+    this->windowWidth = windowWidth;
+    this->windowHeight = windowHeight;
+    this->squareWidth = squareWidth;
+    this->squareHeight = squareHeight;
 }
 
 void FileManager::saveRandomBinaryNumbers(int columnCount, int rowCount) {
@@ -54,5 +57,24 @@ void FileManager::loadRandomBinaryNumbers(int columnCount, std::vector<Numbers*>
 
     }
 
+
+}
+
+int FileManager::getColumnCount() {
+
+    //w * col = W
+    //col = W /w;
+
+    return windowWidth / squareWidth;
+}
+
+int FileManager::getRowCount() {
+
+    //h * row = H
+    //row = H/h
+    return windowHeight / squareHeight;
+}
+
+FileManager::FileManager() {
 
 }
