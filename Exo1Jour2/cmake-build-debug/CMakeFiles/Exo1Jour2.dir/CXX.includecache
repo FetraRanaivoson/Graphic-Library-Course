@@ -6,9 +6,29 @@
 
 #IncludeRegexTransform: 
 
+C:/Librairies graphique/Projects/j03-lib-graphique-aout-2021-fetra/Exo1Jour2/src/FileManager.h
+vector
+-
+fstream
+-
+Numbers.h
+C:/Librairies graphique/Projects/j03-lib-graphique-aout-2021-fetra/Exo1Jour2/src/Numbers.h
+
+C:/Librairies graphique/Projects/j03-lib-graphique-aout-2021-fetra/Exo1Jour2/src/Numbers.h
+vector
+-
+iostream
+-
+
 C:/Librairies graphique/Projects/j03-lib-graphique-aout-2021-fetra/Exo1Jour2/src/main.cpp
 iostream
 -
 SDL2/SDL.h
 -
+fstream
+-
+vector
+-
+FileManager.h
+C:/Librairies graphique/Projects/j03-lib-graphique-aout-2021-fetra/Exo1Jour2/src/FileManager.h
 

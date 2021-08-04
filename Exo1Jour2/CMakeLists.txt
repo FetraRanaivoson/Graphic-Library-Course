@@ -9,17 +9,18 @@ file(
         GLOB_RECURSE
         source_file
         src/*
+
 )
 #si besoin de repertoire assets
-file(
-        COPY
-        assets
-        DESTINATION
-       ${CMAKE_BINARY_DIR}
-)
+#file(
+#        COPY
+#        assets
+#        DESTINATION
+#       ${CMAKE_BINARY_DIR}
+#)
 project(${project_name})
-set(CMAKE_CXX_STANDARD 17)
-add_executable(${project_name} ${source_file})
+set(CMAKE_CXX_STANDARD 20)
+add_executable(${project_name} ${source_file} src/Numbers.cpp src/Numbers.h src/FileManager.cpp src/FileManager.h)
 if (WIN32)
     target_link_libraries(
             ${project_name}

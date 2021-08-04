@@ -58,7 +58,10 @@ void onExistingSaved(std::vector<GameObject *> &retrievedGameObjects, std::ifstr
     }
 }
 
-bool endLine(const std::vector<std::string> &inlineWords) { return inlineWords.size() == 2; }
+bool endLine(const std::vector<std::string> &inlineWords)
+{
+    return inlineWords.size() == 2;
+}
 
 void saveGameObjects() {
     //Prepare file for saving games

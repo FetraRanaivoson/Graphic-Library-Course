@@ -128,6 +128,54 @@ Exo1Jour2/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Exo1Jour2.dir\build.make CMakeFiles/Exo1Jour2.dir/build
 .PHONY : Exo1Jour2/fast
 
+src/FileManager.obj: src/FileManager.cpp.obj
+.PHONY : src/FileManager.obj
+
+# target to build an object file
+src/FileManager.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Exo1Jour2.dir\build.make CMakeFiles/Exo1Jour2.dir/src/FileManager.cpp.obj
+.PHONY : src/FileManager.cpp.obj
+
+src/FileManager.i: src/FileManager.cpp.i
+.PHONY : src/FileManager.i
+
+# target to preprocess a source file
+src/FileManager.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Exo1Jour2.dir\build.make CMakeFiles/Exo1Jour2.dir/src/FileManager.cpp.i
+.PHONY : src/FileManager.cpp.i
+
+src/FileManager.s: src/FileManager.cpp.s
+.PHONY : src/FileManager.s
+
+# target to generate assembly for a file
+src/FileManager.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Exo1Jour2.dir\build.make CMakeFiles/Exo1Jour2.dir/src/FileManager.cpp.s
+.PHONY : src/FileManager.cpp.s
+
+src/Numbers.obj: src/Numbers.cpp.obj
+.PHONY : src/Numbers.obj
+
+# target to build an object file
+src/Numbers.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Exo1Jour2.dir\build.make CMakeFiles/Exo1Jour2.dir/src/Numbers.cpp.obj
+.PHONY : src/Numbers.cpp.obj
+
+src/Numbers.i: src/Numbers.cpp.i
+.PHONY : src/Numbers.i
+
+# target to preprocess a source file
+src/Numbers.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Exo1Jour2.dir\build.make CMakeFiles/Exo1Jour2.dir/src/Numbers.cpp.i
+.PHONY : src/Numbers.cpp.i
+
+src/Numbers.s: src/Numbers.cpp.s
+.PHONY : src/Numbers.s
+
+# target to generate assembly for a file
+src/Numbers.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Exo1Jour2.dir\build.make CMakeFiles/Exo1Jour2.dir/src/Numbers.cpp.s
+.PHONY : src/Numbers.cpp.s
+
 src/main.obj: src/main.cpp.obj
 .PHONY : src/main.obj
 
@@ -161,6 +209,12 @@ help:
 	@echo ... edit_cache
 	@echo ... rebuild_cache
 	@echo ... Exo1Jour2
+	@echo ... src/FileManager.obj
+	@echo ... src/FileManager.i
+	@echo ... src/FileManager.s
+	@echo ... src/Numbers.obj
+	@echo ... src/Numbers.i
+	@echo ... src/Numbers.s
 	@echo ... src/main.obj
 	@echo ... src/main.i
 	@echo ... src/main.s

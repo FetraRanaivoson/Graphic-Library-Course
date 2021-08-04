@@ -82,6 +82,18 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="C:/Librairies graphique/Projects/j03-lib-graphique-aout-2021-fetra/Exo1Jour2/src/FileManager.cpp">
+			<Option target="Exo1Jour2"/>
+		</Unit>
+		<Unit filename="C:/Librairies graphique/Projects/j03-lib-graphique-aout-2021-fetra/Exo1Jour2/src/FileManager.h">
+			<Option target="Exo1Jour2"/>
+		</Unit>
+		<Unit filename="C:/Librairies graphique/Projects/j03-lib-graphique-aout-2021-fetra/Exo1Jour2/src/Numbers.cpp">
+			<Option target="Exo1Jour2"/>
+		</Unit>
+		<Unit filename="C:/Librairies graphique/Projects/j03-lib-graphique-aout-2021-fetra/Exo1Jour2/src/Numbers.h">
+			<Option target="Exo1Jour2"/>
+		</Unit>
 		<Unit filename="C:/Librairies graphique/Projects/j03-lib-graphique-aout-2021-fetra/Exo1Jour2/src/main.cpp">
 			<Option target="Exo1Jour2"/>
 		</Unit>

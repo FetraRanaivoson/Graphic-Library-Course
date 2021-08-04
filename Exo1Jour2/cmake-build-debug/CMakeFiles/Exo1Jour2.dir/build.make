@@ -65,9 +65,35 @@ include CMakeFiles/Exo1Jour2.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/Exo1Jour2.dir/flags.make
 
+CMakeFiles/Exo1Jour2.dir/src/FileManager.cpp.obj: CMakeFiles/Exo1Jour2.dir/flags.make
+CMakeFiles/Exo1Jour2.dir/src/FileManager.cpp.obj: ../src/FileManager.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="C:\Librairies graphique\Projects\j03-lib-graphique-aout-2021-fetra\Exo1Jour2\cmake-build-debug\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/Exo1Jour2.dir/src/FileManager.cpp.obj"
+	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\Exo1Jour2.dir\src\FileManager.cpp.obj -c "C:\Librairies graphique\Projects\j03-lib-graphique-aout-2021-fetra\Exo1Jour2\src\FileManager.cpp"
+
+CMakeFiles/Exo1Jour2.dir/src/FileManager.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Exo1Jour2.dir/src/FileManager.cpp.i"
+	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "C:\Librairies graphique\Projects\j03-lib-graphique-aout-2021-fetra\Exo1Jour2\src\FileManager.cpp" > CMakeFiles\Exo1Jour2.dir\src\FileManager.cpp.i
+
+CMakeFiles/Exo1Jour2.dir/src/FileManager.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Exo1Jour2.dir/src/FileManager.cpp.s"
+	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "C:\Librairies graphique\Projects\j03-lib-graphique-aout-2021-fetra\Exo1Jour2\src\FileManager.cpp" -o CMakeFiles\Exo1Jour2.dir\src\FileManager.cpp.s
+
+CMakeFiles/Exo1Jour2.dir/src/Numbers.cpp.obj: CMakeFiles/Exo1Jour2.dir/flags.make
+CMakeFiles/Exo1Jour2.dir/src/Numbers.cpp.obj: ../src/Numbers.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="C:\Librairies graphique\Projects\j03-lib-graphique-aout-2021-fetra\Exo1Jour2\cmake-build-debug\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/Exo1Jour2.dir/src/Numbers.cpp.obj"
+	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\Exo1Jour2.dir\src\Numbers.cpp.obj -c "C:\Librairies graphique\Projects\j03-lib-graphique-aout-2021-fetra\Exo1Jour2\src\Numbers.cpp"
+
+CMakeFiles/Exo1Jour2.dir/src/Numbers.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Exo1Jour2.dir/src/Numbers.cpp.i"
+	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "C:\Librairies graphique\Projects\j03-lib-graphique-aout-2021-fetra\Exo1Jour2\src\Numbers.cpp" > CMakeFiles\Exo1Jour2.dir\src\Numbers.cpp.i
+
+CMakeFiles/Exo1Jour2.dir/src/Numbers.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Exo1Jour2.dir/src/Numbers.cpp.s"
+	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "C:\Librairies graphique\Projects\j03-lib-graphique-aout-2021-fetra\Exo1Jour2\src\Numbers.cpp" -o CMakeFiles\Exo1Jour2.dir\src\Numbers.cpp.s
+
 CMakeFiles/Exo1Jour2.dir/src/main.cpp.obj: CMakeFiles/Exo1Jour2.dir/flags.make
 CMakeFiles/Exo1Jour2.dir/src/main.cpp.obj: ../src/main.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="C:\Librairies graphique\Projects\j03-lib-graphique-aout-2021-fetra\Exo1Jour2\cmake-build-debug\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/Exo1Jour2.dir/src/main.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="C:\Librairies graphique\Projects\j03-lib-graphique-aout-2021-fetra\Exo1Jour2\cmake-build-debug\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/Exo1Jour2.dir/src/main.cpp.obj"
 	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\Exo1Jour2.dir\src\main.cpp.obj -c "C:\Librairies graphique\Projects\j03-lib-graphique-aout-2021-fetra\Exo1Jour2\src\main.cpp"
 
 CMakeFiles/Exo1Jour2.dir/src/main.cpp.i: cmake_force
@@ -80,17 +106,21 @@ CMakeFiles/Exo1Jour2.dir/src/main.cpp.s: cmake_force
 
 # Object files for target Exo1Jour2
 Exo1Jour2_OBJECTS = \
+"CMakeFiles/Exo1Jour2.dir/src/FileManager.cpp.obj" \
+"CMakeFiles/Exo1Jour2.dir/src/Numbers.cpp.obj" \
 "CMakeFiles/Exo1Jour2.dir/src/main.cpp.obj"
 
 # External object files for target Exo1Jour2
 Exo1Jour2_EXTERNAL_OBJECTS =
 
+Exo1Jour2.exe: CMakeFiles/Exo1Jour2.dir/src/FileManager.cpp.obj
+Exo1Jour2.exe: CMakeFiles/Exo1Jour2.dir/src/Numbers.cpp.obj
 Exo1Jour2.exe: CMakeFiles/Exo1Jour2.dir/src/main.cpp.obj
 Exo1Jour2.exe: CMakeFiles/Exo1Jour2.dir/build.make
 Exo1Jour2.exe: CMakeFiles/Exo1Jour2.dir/linklibs.rsp
 Exo1Jour2.exe: CMakeFiles/Exo1Jour2.dir/objects1.rsp
 Exo1Jour2.exe: CMakeFiles/Exo1Jour2.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir="C:\Librairies graphique\Projects\j03-lib-graphique-aout-2021-fetra\Exo1Jour2\cmake-build-debug\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable Exo1Jour2.exe"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir="C:\Librairies graphique\Projects\j03-lib-graphique-aout-2021-fetra\Exo1Jour2\cmake-build-debug\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX executable Exo1Jour2.exe"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles\Exo1Jour2.dir\link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

@@ -80,12 +80,12 @@ clean: CMakeFiles/Exo1Jour2.dir/clean
 CMakeFiles/Exo1Jour2.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Exo1Jour2.dir\build.make CMakeFiles/Exo1Jour2.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Exo1Jour2.dir\build.make CMakeFiles/Exo1Jour2.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="C:\Librairies graphique\Projects\j03-lib-graphique-aout-2021-fetra\Exo1Jour2\cmake-build-debug\CMakeFiles" --progress-num=1,2 "Built target Exo1Jour2"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="C:\Librairies graphique\Projects\j03-lib-graphique-aout-2021-fetra\Exo1Jour2\cmake-build-debug\CMakeFiles" --progress-num=1,2,3,4 "Built target Exo1Jour2"
 .PHONY : CMakeFiles/Exo1Jour2.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/Exo1Jour2.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start "C:\Librairies graphique\Projects\j03-lib-graphique-aout-2021-fetra\Exo1Jour2\cmake-build-debug\CMakeFiles" 2
+	$(CMAKE_COMMAND) -E cmake_progress_start "C:\Librairies graphique\Projects\j03-lib-graphique-aout-2021-fetra\Exo1Jour2\cmake-build-debug\CMakeFiles" 4
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 CMakeFiles/Exo1Jour2.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start "C:\Librairies graphique\Projects\j03-lib-graphique-aout-2021-fetra\Exo1Jour2\cmake-build-debug\CMakeFiles" 0
 .PHONY : CMakeFiles/Exo1Jour2.dir/rule

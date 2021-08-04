@@ -1,4 +1,6 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/Exo1Jour2.dir/src/FileManager.cpp.obj"
+  "CMakeFiles/Exo1Jour2.dir/src/Numbers.cpp.obj"
   "CMakeFiles/Exo1Jour2.dir/src/main.cpp.obj"
   "Exo1Jour2.exe"
   "Exo1Jour2.exe.manifest"
