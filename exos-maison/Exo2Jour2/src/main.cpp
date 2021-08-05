@@ -52,10 +52,10 @@ int main(int argc, char **args) {
 
     bool lineWasTraced = false;
     SDL_Rect rect;
-
+    SDL_Color colorToDraw = {255, 0, 0, 255};
     while (isRunning) {
-        SDL_SetRenderDrawColor(renderer, 255, 255, 255, 0);
-        SDL_RenderClear(renderer);
+//        SDL_SetRenderDrawColor(renderer, 255, 255, 255, 0);
+//        SDL_RenderClear(renderer);
 
         displayMenuPanel(menuBar, redPencil, bluePencil, greenPencil, yellowPencil);
 
@@ -68,18 +68,27 @@ int main(int argc, char **args) {
 
                 if (redPencilSelected(redPencil, x, y)) {
                     SDL_Log("Red selected");
-                    SDL_SetRenderDrawColor(renderer, 255, 0, 0, 0);
+//                    SDL_SetRenderDrawColor(renderer, 255, 0, 0, 0);
+                    colorToDraw.r = 255;
+                    colorToDraw.g = 0;
+                    colorToDraw.b = 0;
                 }
 
                 if (bluePencilSelected(bluePencil, x, y)) {
                     SDL_Log("Blue selected");
-                    SDL_SetRenderDrawColor(renderer, 0, 0, 255, 0);
+//                    SDL_SetRenderDrawColor(renderer, 0, 0, 255, 0);
+                    colorToDraw.r = 0;
+                    colorToDraw.g = 0;
+                    colorToDraw.b = 255;
                 }
 
 
                 if (greenPencilSelected(greenPencil, x, y)) {
                     SDL_Log("Green selected");
-                    SDL_SetRenderDrawColor(renderer, 0, 255, 0, 0);
+//                    SDL_SetRenderDrawColor(renderer, 0, 255, 0, 0);
+                    colorToDraw.r = 0;
+                    colorToDraw.g = 255;
+                    colorToDraw.b = 0;
                 }
 
 
@@ -101,7 +110,7 @@ int main(int argc, char **args) {
                 buttons2 = SDL_GetMouseState(&xx, &yy);
             }
         }
-
+        SDL_SetRenderDrawColor(renderer, colorToDraw.r, colorToDraw.g, colorToDraw.b, colorToDraw.a);
         SDL_RenderDrawLine(renderer, x, y, xx, yy);
 
 
