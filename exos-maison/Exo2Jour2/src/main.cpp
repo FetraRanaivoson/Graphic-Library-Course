@@ -38,7 +38,7 @@ bool onCanvas(const SDL_Rect &menuBar, int x, int y);
 SDL_Color &getColorToDraw(const SDL_Rect &redPencil, const SDL_Rect &bluePencil, const SDL_Rect &greenPencil,
                           const SDL_Rect &yellowPencil, int x, int y, SDL_Color &colorToDraw);
 
-bool onTools(const SDL_Rect &menuBar, int pointStartX, int pointStartY);
+bool onClickTools(const SDL_Rect &menuBar, int pointStartX, int pointStartY);
 
 bool firstClick(const SDL_Event &event, bool firstPointPlaced);
 
@@ -46,16 +46,18 @@ bool anyClick(const SDL_Event &event);
 
 bool secondClick(const SDL_Event &event, bool firstPointPlaced);
 
-bool drawOneLine(std::vector<SDL_Point> &points);
+bool drawOneLine(std::vector<SDL_Point> &points, bool& realTimeDrawing);
 
-bool drawFourLines(std::vector<SDL_Point> &points);
+bool drawFourLines(std::vector<SDL_Point> &points, bool& realTimeDrawing);
 
 void checkSelectedTool(const SDL_Rect &squareTool, const SDL_Rect &lineTool, int pointStartX, int pointStartY,
                        bool &isLineToolActive, bool &isSquareToolActive, bool &isFirstPointPlaced);
 
-void enableDrawings(bool isLineToolActive, bool isSquareToolActive, bool &isFirstPointPlaced, std::vector<SDL_Point> &points);
+void enableDrawings(bool isLineToolActive, bool isSquareToolActive, bool &isFirstPointPlaced,
+                    std::vector<SDL_Point> &points, bool &realTimeDrawing);
 
-int main(int argc, char **args) {
+int main(int argc, char **args)
+{
 
     bool isRunning = true;
     SDL_Init(SDL_INIT_EVERYTHING);
@@ -92,19 +94,24 @@ int main(int argc, char **args) {
     bool isLineToolActive = true;
     bool isSquareToolActive = false;
 
+    bool realTimeDrawing = true;
+
 
     while (isRunning) {
-//        SDL_SetRenderDrawColor(renderer, 255, 255, 255, 0);
-//        SDL_RenderClear(renderer);
+        SDL_SetRenderDrawColor(renderer, 255, 255, 255, 0);
+        if (realTimeDrawing)
+            //SDL_RenderClear(renderer);
 
         displayMenuPanel(menuBar, redPencil, bluePencil, greenPencil, yellowPencil, canvas, squareTool, lineTool);
 
         while (SDL_PollEvent(&event)) {
             if (anyClick(event)) {
                 clickedArea = SDL_GetMouseState(&pointStartX, &pointStartY);
-                if (onTools(menuBar, pointStartX, pointStartY)) {
-                    colorToDraw = getColorToDraw(redPencil, bluePencil, greenPencil, yellowPencil, pointStartX, pointStartY, colorToDraw);
-                    checkSelectedTool(squareTool, lineTool, pointStartX, pointStartY, isLineToolActive, isSquareToolActive, isFirstPointPlaced);
+                if (onClickTools(menuBar, pointStartX, pointStartY)) {
+                    colorToDraw = getColorToDraw(redPencil, bluePencil, greenPencil, yellowPencil, pointStartX,
+                                                 pointStartY, colorToDraw);
+                    checkSelectedTool(squareTool, lineTool, pointStartX, pointStartY, isLineToolActive,
+                                      isSquareToolActive, isFirstPointPlaced);
                 }
             }
 
@@ -128,11 +135,8 @@ int main(int argc, char **args) {
         }
 
 
-
         SDL_SetRenderDrawColor(renderer, colorToDraw.r, colorToDraw.g, colorToDraw.b, colorToDraw.a);
-        enableDrawings(isLineToolActive, isSquareToolActive, isFirstPointPlaced, points);
-
-
+        enableDrawings(isLineToolActive, isSquareToolActive, isFirstPointPlaced, points, realTimeDrawing);
 
         state = SDL_GetKeyboardState(NULL);
         if (state[SDL_SCANCODE_ESCAPE])
@@ -151,18 +155,19 @@ int main(int argc, char **args) {
     return 0;
 }
 
-void enableDrawings(bool isLineToolActive, bool isSquareToolActive, bool &isFirstPointPlaced, std::vector<SDL_Point> &points) {
+void enableDrawings(bool isLineToolActive, bool isSquareToolActive, bool &isFirstPointPlaced,
+                    std::vector<SDL_Point> &points, bool &realTimeDrawing) {
     if (isLineToolActive) {
-        isFirstPointPlaced = drawOneLine(points);
+        isFirstPointPlaced = drawOneLine(points, realTimeDrawing);
         //isSquareToolActive = false;
     }
 
     if (isSquareToolActive) {
-        isFirstPointPlaced = drawFourLines(points);
+        isFirstPointPlaced = drawFourLines(points, realTimeDrawing);
         //isLineToolActive = false;
     }
-
 }
+
 
 void checkSelectedTool(const SDL_Rect &squareTool, const SDL_Rect &lineTool, int pointStartX, int pointStartY,
                        bool &isLineToolActive, bool &isSquareToolActive, bool &isFirstPointPlaced) {
@@ -180,24 +185,41 @@ void checkSelectedTool(const SDL_Rect &squareTool, const SDL_Rect &lineTool, int
     }
 }
 
-bool drawFourLines(std::vector<SDL_Point> &points) {
+bool drawFourLines(std::vector<SDL_Point> &points, bool& realTimeDrawing) {
     bool isFirstPointPlaced;
+//    if (points.size()>=1  && points.size()<3) {
+//        //RealTime drawing
+//        Uint32 clicked;
+//        int currentEndX, currentEndY;
+//        clicked = SDL_GetMouseState(&currentEndX, &currentEndY);
+//        SDL_RenderDrawLine(renderer, points[0].x, points[0].y, currentEndX, currentEndY);
+//    }
     if (points.size() == 4) {
         SDL_Point pointArray[4] = {points[0], points[1], points[2], points[3]};
         SDL_RenderDrawLines(renderer, pointArray, 4);
         SDL_RenderDrawLine(renderer, pointArray[3].x, pointArray[3].y, pointArray[0].x, pointArray[0].y);
         points.clear();
         isFirstPointPlaced = false;
+        realTimeDrawing = false;
     }
     return isFirstPointPlaced;
 }
 
-bool drawOneLine(std::vector<SDL_Point> &points) {
+bool drawOneLine(std::vector<SDL_Point> &points, bool& realTimeDrawing) {
     bool isFirstPointPlaced;
+    if (points.size() == 1) {
+        //RealTime drawing
+//        Uint32 clicked;
+//        int currentEndX, currentEndY;
+//        clicked = SDL_GetMouseState(&currentEndX, &currentEndY);
+//        SDL_RenderDrawLine(renderer, points[0].x, points[0].y, currentEndX, currentEndY);
+    }
+
     if (points.size() == 2) {
         SDL_RenderDrawLine(renderer, points[0].x, points[0].y, points[1].x, points[1].y);
         points.clear();
         isFirstPointPlaced = false;
+        realTimeDrawing = false;
     }
     return isFirstPointPlaced;
 }
@@ -212,7 +234,7 @@ bool firstClick(const SDL_Event &event, bool firstPointPlaced) {
     return event.type == SDL_MOUSEBUTTONDOWN && !firstPointPlaced;
 }
 
-bool onTools(const SDL_Rect &menuBar, int pointStartX, int pointStartY) {
+bool onClickTools(const SDL_Rect &menuBar, int pointStartX, int pointStartY) {
     return menuPanelSelected(menuBar, pointStartX, pointStartY);
 }
 
