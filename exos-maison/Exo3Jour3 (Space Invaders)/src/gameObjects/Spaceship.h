@@ -26,7 +26,7 @@ protected:
 
     const Uint8 *state;
     int momentum;
-    int velocity;
+    double velocity;
     int acceleration;
     int friction;
 

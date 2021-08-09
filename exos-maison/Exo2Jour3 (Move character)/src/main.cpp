@@ -89,6 +89,7 @@ int main(int argc, char **args) {
         fps = 1000 / deltaTime;
     }
 
+    SDL_DestroyTexture(deadPoolImg);
     SDL_DestroyRenderer(render);
     SDL_DestroyWindow(win);
     SDL_Quit();
