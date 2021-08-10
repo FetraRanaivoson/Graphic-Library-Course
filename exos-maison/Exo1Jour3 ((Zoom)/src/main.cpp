@@ -62,12 +62,12 @@ int main(int argc, char **args) {
                 if(event.wheel.y > 0) // scroll up
                     {
                     // Put code for handling "scroll up" here!
-                    SDL_Log("scroll up ");
+                    SDL_Log("scroll up %d " , event.wheel.y);
                     }
                 else if(event.wheel.y < 0) // scroll down
                     {
                     // Put code for handling "scroll down" here!
-                    SDL_Log("scroll down ");
+                    SDL_Log("scroll down %d ", event.wheel.y);
                     }
 
                 if(event.wheel.x > 0) // scroll right
