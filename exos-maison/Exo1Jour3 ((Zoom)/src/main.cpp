@@ -18,11 +18,13 @@ int main(int argc, char **args) {
     int wI, hI;
 
     SDL_Texture *paintingImg = nullptr;
+    SDL_Texture *thumbnailImg = nullptr;
     if (!surfaceTemp) {
         SDL_Log("Image loading failed");
     } else {
         //Transform surface to texture
         paintingImg = SDL_CreateTextureFromSurface(render, surfaceTemp);
+        thumbnailImg = SDL_CreateTextureFromSurface(render, surfaceTemp);
         //Once surface is loaded, keep track of its width and height (the *srRect)
         wI = surfaceTemp->w;
         hI = surfaceTemp->h;
@@ -41,6 +43,14 @@ int main(int argc, char **args) {
     screenPosition.w = wI;
     screenPosition.h = hI;
 
+
+    SDL_Rect screenPositionThumbnail;
+    screenPositionThumbnail.w = wI/5;
+    screenPositionThumbnail.h = hI/5;
+    screenPositionThumbnail.x = width -screenPositionThumbnail.w;
+    screenPositionThumbnail.y = height -screenPositionThumbnail.h;
+
+
     SDL_FreeSurface(surfaceTemp);
 
     const Uint32 *mouseState;
@@ -58,32 +68,28 @@ int main(int argc, char **args) {
         //Event handling
         //use while si no getStateMouse or getKeyboardState
         while (SDL_PollEvent(&event)) {
-            if(event.type == SDL_MOUSEWHEEL)
-            {
-                if(event.wheel.y > 0) // scroll up
-                    {
+            if (event.type == SDL_MOUSEWHEEL) {
+                if (event.wheel.y > 0) // scroll up
+                {
                     // Put code for handling "scroll up" here!
-                    screenPosition.w = screenPosition.w * -.99;
-                    screenPosition.h = screenPosition.h * -.99;
-                    SDL_Log("scroll up %d " , event.wheel.y);
-                    }
-                else if(event.wheel.y < 0) // scroll down
-                    {
-                    screenPosition.w = screenPosition.w * 1.01;
-                    screenPosition.h = screenPosition.h * 1.01;
+                    screenPosition.w += screenPosition.w / 5;
+                    screenPosition.h += screenPosition.h / 5;
+                    SDL_Log("scroll up %d ", event.wheel.y);
+                } else if (event.wheel.y < 0) // scroll down
+                {
+                    screenPosition.w -= screenPosition.w / 5;
+                    screenPosition.h -= screenPosition.h / 5;
                     SDL_Log("scroll down %d ", event.wheel.y);
-                    }
+                }
 
-                if(event.wheel.x > 0) // scroll right
-                    {
-
+                if (event.wheel.x > 0) // scroll right
+                {
                     SDL_Log("scroll right ");
-                    }
-                else if(event.wheel.x < 0) // scroll left
-                    {
+                } else if (event.wheel.x < 0) // scroll left
+                {
                     // ...
                     SDL_Log("scroll left ");
-                    }
+                }
             }
 //            if (event.type == SDL_MOUSEWHEEL) {
 //                SDL_Log("whhel : %d " , event.wheel.x > 0);
@@ -110,7 +116,7 @@ int main(int argc, char **args) {
         //*sRect: source (surfaceTemp)
         //*dRect: screen (NULL if I want source image to always cover entire screen)
         SDL_RenderCopy(render, paintingImg, &sourcePosition, &screenPosition);
-
+        SDL_RenderCopy(render, thumbnailImg, &sourcePosition, &screenPositionThumbnail);
 
 
         //Pause image
