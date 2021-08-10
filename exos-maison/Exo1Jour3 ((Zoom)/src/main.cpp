@@ -56,23 +56,27 @@ int main(int argc, char **args) {
         SDL_RenderClear(render);
 
         //Event handling
+        //use while si no getStateMouse or getKeyboardState
         while (SDL_PollEvent(&event)) {
             if(event.type == SDL_MOUSEWHEEL)
             {
                 if(event.wheel.y > 0) // scroll up
                     {
                     // Put code for handling "scroll up" here!
+                    screenPosition.w = screenPosition.w * -.99;
+                    screenPosition.h = screenPosition.h * -.99;
                     SDL_Log("scroll up %d " , event.wheel.y);
                     }
                 else if(event.wheel.y < 0) // scroll down
                     {
-                    // Put code for handling "scroll down" here!
+                    screenPosition.w = screenPosition.w * 1.01;
+                    screenPosition.h = screenPosition.h * 1.01;
                     SDL_Log("scroll down %d ", event.wheel.y);
                     }
 
                 if(event.wheel.x > 0) // scroll right
                     {
-                    // ...
+
                     SDL_Log("scroll right ");
                     }
                 else if(event.wheel.x < 0) // scroll left
