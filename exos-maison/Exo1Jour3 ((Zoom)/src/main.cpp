@@ -1,6 +1,7 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 #include "iostream"
+
 SDL_Window *win;
 SDL_Renderer *render;
 int width = 800, height = 600;
@@ -55,29 +56,52 @@ int main(int argc, char **args) {
         SDL_RenderClear(render);
 
         //Event handling
-        SDL_PollEvent(&event);
+        while (SDL_PollEvent(&event)) {
+            if(event.type == SDL_MOUSEWHEEL)
+            {
+                if(event.wheel.y > 0) // scroll up
+                    {
+                    // Put code for handling "scroll up" here!
+                    SDL_Log("scroll up ");
+                    }
+                else if(event.wheel.y < 0) // scroll down
+                    {
+                    // Put code for handling "scroll down" here!
+                    SDL_Log("scroll down ");
+                    }
 
-        if (event.type == SDL_MOUSEWHEEL) {
-            SDL_Log(std::to_string (event.wheel.y).c_str());
-            if (event.wheel.y < 0) { //Zoom out
-                SDL_Log("Zoom out");
-                screenPosition.w = screenPosition.w * -.99;
-                screenPosition.h = screenPosition.h * -.99;
-
+                if(event.wheel.x > 0) // scroll right
+                    {
+                    // ...
+                    SDL_Log("scroll right ");
+                    }
+                else if(event.wheel.x < 0) // scroll left
+                    {
+                    // ...
+                    SDL_Log("scroll left ");
+                    }
             }
-            if (event.wheel.y > 0) { //Zoom in
-                SDL_Log("Zoom in");
-                screenPosition.w = screenPosition.w * .99;
-                screenPosition.h = screenPosition.h * .99;
+//            if (event.type == SDL_MOUSEWHEEL) {
+//                SDL_Log("whhel : %d " , event.wheel.x > 0);
+//                //            if (event.wheel.y < 0) { //Zoom out
+//                //                SDL_Log("Zoom out");
+//                //                screenPosition.w = screenPosition.w * -.99;
+//                //                screenPosition.h = screenPosition.h * -.99;
+//                //
+//                //            }
+//                //            if (event.wheel.y > 0) { //Zoom in
+//                //                SDL_Log("Zoom in");
+//                //                screenPosition.w = screenPosition.w * .99;
+//                //                screenPosition.h = screenPosition.h * .99;
+//                //
+//                //            }
+//                //            event.wheel.y = 0;
+//            }
 
+            if (event.type == SDL_QUIT) {
+                isRunning = false;
             }
-            event.wheel.y = 0;
         }
-
-        if (event.type == SDL_QUIT) {
-            isRunning = false;
-        }
-
         //Draw any objects
         //*sRect: source (surfaceTemp)
         //*dRect: screen (NULL if I want source image to always cover entire screen)
