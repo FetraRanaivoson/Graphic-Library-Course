@@ -19,6 +19,8 @@ protected:
     SDL_Rect sourcePosition;
     int wI, hI;
 
+    SDL_Rect ammo;
+
     int initialPosX;
     int initialPosY;
 
@@ -41,8 +43,9 @@ public:
 
     virtual void initializeImage(SDL_Renderer *renderer, int windowW, int windowH) = 0;
     virtual void display(SDL_Renderer *renderer) = 0;
-    virtual void update(Uint32 time) = 0;
+    virtual void update(SDL_Renderer *renderer,Uint32 time) = 0;
 
+    const SDL_Rect &getAmmo() const;
 
     void setInitialPosX(int initialPosX);
     void setInitialPosY(int initialPosY);
@@ -52,6 +55,8 @@ public:
     virtual int getFps() const = 0;
 
     virtual void destroyResources() = 0;
+
+
 
 
 };

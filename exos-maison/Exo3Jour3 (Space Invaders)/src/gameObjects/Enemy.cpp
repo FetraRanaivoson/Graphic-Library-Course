@@ -53,7 +53,7 @@ void Enemy::display(SDL_Renderer *renderer) {
     SDL_RenderCopyEx(renderer, textureImg, &sourcePosition, &screenPosition, 0, 0, flip);
 }
 
-void Enemy::update(Uint32 time) {
+void Enemy::update(SDL_Renderer *renderer, Uint32 time) {
 
     currentTime = SDL_GetTicks();
     deltaTime = currentTime - lastUpdate;
@@ -86,6 +86,14 @@ int Enemy::getFps() const {
 void Enemy::destroyResources() {
     SDL_DestroyTexture(textureImg);
     IMG_Quit();
+}
+
+bool Enemy::isTouchedBy(SDL_Rect ammo) {
+
+    return ammo.x > screenPosition.x
+    && ammo.x + ammo.w < screenPosition.x + screenPosition.w
+    && ammo.y > screenPosition.y
+    && ammo.y + ammo.h < screenPosition.y + screenPosition.h;
 }
 
 

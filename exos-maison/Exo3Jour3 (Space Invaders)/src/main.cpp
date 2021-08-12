@@ -25,6 +25,36 @@ int main(int argc, char **args) {
     SDL_CreateWindowAndRenderer(windowW, windowH, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC, &win,
                                 &renderer);
 
+    Uint32 format;
+    //SDL_Texture *bgSmall = IMG_LoadTexture(renderer, "./assets/bgSmall.png");
+    SDL_Texture *bgSmall = IMG_LoadTexture(renderer, "./assets/bg2.jpg");
+    if (!bgSmall)
+        SDL_Log("pb");
+
+    int wI, hI;
+    SDL_QueryTexture(bgSmall, &format, NULL, &wI, &hI);
+
+    int wS, hS;
+    SDL_Texture *bigBg = SDL_CreateTexture(renderer, format, SDL_TEXTUREACCESS_TARGET, wI, 3 * hI);
+    wS = wI;
+    hS = hI / 3;
+
+
+    SDL_Rect position = {0, 0, wI, hI};
+    SDL_SetRenderTarget(renderer, bigBg); // cibler la texture ou je vais copier
+    SDL_RenderCopy(renderer, bgSmall, NULL, &position);
+    position.y += hI;
+    //SDL_RenderCopyEx(renderer, bgSmall,NULL, &position,0, NULL, SDL_FLIP_VERTICAL);
+    //position.y +=hI;
+    SDL_RenderCopy(renderer, bgSmall, NULL, &position);
+    SDL_SetRenderTarget(renderer, NULL); // je fais des copie sur l ecran
+    position.y = position.h;
+
+
+    Uint32 currentTime = 0;
+    Uint32 lastUpdate = 0;
+    int bgDeltaTime = 20;
+
 
     int columnCount = 10;
     int rowCount = 3;
@@ -47,11 +77,22 @@ int main(int argc, char **args) {
     std::vector<Enemy *> enemies;
     positionEnemies(columnCount, rowCount, retrievedLevel, enemySpacingX, enemySpacingY, enemies);
 
+    bool noEnemyLeft = false;
+
     while (isRunning) {
+        currentTime = SDL_GetTicks();
 
         //Clean window
         SDL_SetRenderDrawColor(renderer, 0, 51, 102, 255);
         SDL_RenderClear(renderer);
+
+
+        if (noEnemyLeft) {
+            std::vector<Level *> retrievedLevel = getLevel(columnCount, rowCount, levelManager);
+            positionEnemies(columnCount, rowCount, retrievedLevel, enemySpacingX, enemySpacingY, enemies);
+            noEnemyLeft = false;
+        }
+
 
         //Event handling
         SDL_PollEvent(&event);
@@ -60,10 +101,21 @@ int main(int argc, char **args) {
         }
 
 
+        if (currentTime - lastUpdate > bgDeltaTime) {
+            position.y -= 1;
+            lastUpdate = currentTime;
+            if (position.y <= 0)
+                position.y = position.h;
+
+        }
+
+        SDL_RenderCopy(renderer, bigBg, &position, NULL);
+
+
         //Update game objects
-        player->update(SDL_GetTicks());
+        player->update(renderer,SDL_GetTicks());
         for (Enemy *e : enemies) {
-            e->update(SDL_GetTicks());
+            e->update(renderer, SDL_GetTicks());
         }
 
 
@@ -71,6 +123,16 @@ int main(int argc, char **args) {
         player->display(renderer);
         for (Enemy *e: enemies) {
             e->display(renderer);
+        }
+
+        for (int i=0; i < enemies.size(); i++) {
+            if (enemies[i]->isTouchedBy(player->getAmmo())){
+                enemies.erase(enemies.cbegin() + i);
+            }
+        }
+
+        if (enemies.empty()) {
+            noEnemyLeft = true;
         }
 
 
@@ -87,6 +149,8 @@ int main(int argc, char **args) {
     for (Enemy *e: enemies) {
         e->destroyResources();
     }
+    SDL_DestroyTexture(bgSmall);
+    SDL_DestroyTexture(bigBg);
     SDL_DestroyRenderer(renderer);
     SDL_DestroyWindow(win);
     SDL_Quit();

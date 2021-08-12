@@ -18,13 +18,15 @@ public:
 
     void initializeImage(SDL_Renderer *renderer, int windowW, int windowH) override;
     void display(SDL_Renderer *renderer) override;
-    void update(Uint32 time) override;
+    void update(SDL_Renderer *renderer, Uint32 time) override;
 
     int getFriction() const override;
 
     int getFps() const override;
 
     void destroyResources() override;
+
+    void touchBy();
 
 };
 

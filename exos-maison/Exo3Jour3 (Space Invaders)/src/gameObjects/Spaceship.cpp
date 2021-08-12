@@ -25,4 +25,8 @@ void Spaceship::setInitialPosY(int initialPosY) {
     this->initialPosY = initialPosY;
 }
 
+const SDL_Rect &Spaceship::getAmmo() const {
+    return ammo;
+}
+
 

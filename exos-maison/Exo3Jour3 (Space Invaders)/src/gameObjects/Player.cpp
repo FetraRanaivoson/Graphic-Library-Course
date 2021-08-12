@@ -16,6 +16,12 @@ Player::Player(SDL_Renderer *renderer, int windowW, int windowH, int initialPosX
     velocity = 1;
 
     currentTime = SDL_GetTicks();
+
+    ammo.x = initialPosX;
+    ammo.y = initialPosY;
+    ammo.w = 5;
+    ammo.h= 35;
+
 }
 
 void Player::initializeImage(SDL_Renderer *renderer, int windowW, int windowH) {
@@ -42,9 +48,11 @@ void Player::initializeImage(SDL_Renderer *renderer, int windowW, int windowH) {
     screenPosition.w = wI / 6;
     screenPosition.h = hI / 6;
     SDL_FreeSurface(surfaceTemp);
+
+
 }
 
-void Player::update(Uint32 time) {
+void Player::update(SDL_Renderer *renderer, Uint32 time) {
 
     if (state[SDL_SCANCODE_LEFT]) {
         screenPosition.x -= velocity * deltaTime;
@@ -52,12 +60,21 @@ void Player::update(Uint32 time) {
     if (state[SDL_SCANCODE_RIGHT]) {
         screenPosition.x += velocity * deltaTime;
     }
+    if (state[SDL_SCANCODE_SPACE]) {
+        ammo.x = screenPosition.x + screenPosition.w /2 ;
+        ammo.y = screenPosition.y - screenPosition.h/2 ;
+    }
     if (screenPosition.x > windowW) {
         screenPosition.x = 0;
     }
     if (screenPosition.x < 0) {
         screenPosition.x = windowW;
     }
+
+
+    ammo.y += -20;
+    SDL_SetRenderDrawColor(renderer, 255, 255,0,255);
+    SDL_RenderFillRect(renderer, &ammo);;
 
     //std::cout << deltaTime <<std::endl;
 
@@ -83,6 +100,10 @@ int Player::getFps() const {
 void Player::destroyResources() {
     SDL_DestroyTexture(textureImg);
     IMG_Quit();
+}
+
+void Player::touchBy() {
+
 }
 
 
