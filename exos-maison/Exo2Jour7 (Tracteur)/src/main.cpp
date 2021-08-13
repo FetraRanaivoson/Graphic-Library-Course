@@ -3,9 +3,9 @@
 #include <GL/glu.h>
 void drawAxis();
 void drawCircle(int resolution, int radius, int translateX);
-void drawBody(float velocityTranslationX, float velocityTranslationY);
-void drawWheels(float velocityTranslationX, float velocityTranslationY, float velocityRotation);
-void drawShovel(float velocityTranslationX, float velocityTranslationY, float shovelRotationVelocity);
+void drawBody();
+void drawWheels(float velocityRotation);
+void drawShovel(float shovelRotationVelocity);
 void getState(const Uint8 *state, float &velocityTranslationX, float &velocityTranslationY, float &velocityRotation,
               float &shovelRotationVelocity);
 int main(int argc, char **args) {
@@ -49,10 +49,10 @@ int main(int argc, char **args) {
         getState(state, velocityTranslationX, velocityTranslationY, velocityRotation, shovelRotationVelocity);
 
 //        drawAxis();
-        glTranslatef(velocityTranslationX, velocityTranslationY, 0);
-        drawBody(velocityTranslationX, velocityTranslationY);
-        drawWheels(velocityTranslationX, velocityTranslationY, velocityRotation);
-        drawShovel(velocityTranslationX, velocityTranslationY, shovelRotationVelocity);
+        glTranslatef(velocityTranslationX, velocityTranslationY, 0); //Translate for future objects
+        drawBody();
+        drawWheels(velocityRotation);
+        drawShovel(shovelRotationVelocity);
 //        drawAxis();
 
 
@@ -72,12 +72,12 @@ void getState(const Uint8 *state, float &velocityTranslationX, float &velocityTr
               float &shovelRotationVelocity) {
     if (state[SDL_SCANCODE_D]) {
         velocityTranslationX += 1;
-        velocityRotation += .1;
+        velocityRotation -= .25;
     }
     if (state[SDL_SCANCODE_A]) {
         velocityTranslationX -= 1;
         //Create Axis for the shovel
-        velocityRotation -= .1;
+        velocityRotation += .25;
     }
     if (state[SDL_SCANCODE_W]) {
         velocityTranslationY += 1;
@@ -100,9 +100,8 @@ void getState(const Uint8 *state, float &velocityTranslationX, float &velocityTr
         }
     }
 }
-void drawShovel(float velocityTranslationX, float velocityTranslationY, float shovelRotationVelocity) {
+void drawShovel(float shovelRotationVelocity) {
     glPushMatrix();
-
     //Create Axis for the shovel
     glTranslatef(75, 100, 0);
     glBegin(GL_LINES);
@@ -113,7 +112,7 @@ void drawShovel(float velocityTranslationX, float velocityTranslationY, float sh
     glVertex2f(0, 0);
     glVertex2f(0, 20);
     glEnd();
-    glTranslatef(velocityTranslationX, velocityTranslationY, 0);
+    //glTranslatef(velocityTranslationX, velocityTranslationY, 0);
     glRotatef(shovelRotationVelocity, 0, 0, 1);
     glBegin(GL_LINE_STRIP);
     glColor3ub(255, 200, 0);
@@ -128,22 +127,22 @@ void drawShovel(float velocityTranslationX, float velocityTranslationY, float sh
     glVertex2f(10, -10);
     glVertex2f(0, 0);
     glEnd();
+
     glPopMatrix();
 }
-void drawWheels(float velocityTranslationX, float velocityTranslationY, float velocityRotation) {
+void drawWheels(float velocityRotation) {
     glPushMatrix();
+
     glTranslatef(-100, 0, 0);
-
-    //glRotatef(velocityRotation,0,0,1);
-
-
     int resolution = 100;
     int radius = 50;
     int translateX = -100;
+
     glPushMatrix();
     glRotatef(velocityRotation, 0, 0, 1);
     drawCircle(resolution, radius, translateX);
     glPopMatrix();
+
     glTranslatef(+175, 0, 0);
     drawAxis();
     //glRotatef(velocityRotation,0,0,1);
@@ -152,9 +151,11 @@ void drawWheels(float velocityTranslationX, float velocityTranslationY, float ve
     glRotatef(velocityRotation, 0, 0, 1);
     drawCircle(resolution, radius, translateX);
     glPopMatrix();
+
     glPopMatrix();
+    //drawAxis();
 }
-void drawBody(float velocityTranslationX, float velocityTranslationY) {
+void drawBody() {
     glPushMatrix();
     glBegin(GL_LINE_STRIP);
     glColor3ub(255, 200, 0);

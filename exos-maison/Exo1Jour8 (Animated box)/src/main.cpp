@@ -11,7 +11,7 @@ int main(int argc, char **args) {
     int width = 800, height = 600;
     bool isRunning = true;
     SDL_Init(SDL_INIT_EVERYTHING);
-    win = SDL_CreateWindow("opengl3D", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, width, height,
+    win = SDL_CreateWindow("Animated box", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, width, height,
                            SDL_WINDOW_OPENGL);
 
 
@@ -37,8 +37,11 @@ int main(int argc, char **args) {
     auto* farWall = new Transform(0,2,-4,0,0,0,4,2,.5);
     auto* box1 = new Transform(2, .55, 0,0,0,0, .75, .5, .75);
     auto* box2 = new Transform(3,.55,2,0,0,0,.25,.5,.25);
-    float box1VelocityX = .01;
-    float box2VelocityX = .005;
+
+    //auto* box2 = new Transform(3,.55,2,.25,.5,.25);
+    float box1VelocityPositionX = .01;
+    float box1VelocityRotationY = 0;
+    //float box2VelocityX = .005;
 
     const Uint8 *state;
     SDL_Event event;
@@ -62,42 +65,45 @@ int main(int argc, char **args) {
         }
 
 
-        //Update box1
-        box1->incrementPosX(-box1VelocityX);
-        if (box1->getPosX() <= leftWall->getPosX() + leftWall->getScaleX() / 2 + box1->getScaleX() / 2
-            || box1->getPosX() >= -leftWall->getPosX() - leftWall->getScaleX() / 2 - box1->getScaleX() / 2) {
-            box1VelocityX *= -1;
+        state = SDL_GetKeyboardState(NULL);
+        if (state[SDL_SCANCODE_UP])
+            box1->incrementPosX(box1VelocityPositionX);
+        if (state[SDL_SCANCODE_DOWN])
+            box1->incrementPosX(-box1VelocityPositionX);
+        if (state[SDL_SCANCODE_LEFT])
+            box1VelocityRotationY ++;
+        if (state[SDL_SCANCODE_RIGHT])
+            box1VelocityRotationY --;
+
+
+
+        if (box1->getPosX() <= leftWall->getPosX() + leftWall->getScaleX()/2 + box1->getScaleX()) {
+            box1->incrementPosX(leftWall->getScaleX() );
+        }
+        if (box1->getPosX() >= -leftWall->getPosX() - leftWall->getScaleX()/2- box1->getScaleX()) {
+            box1->incrementPosX(-leftWall->getScaleX());
         }
 
-        //Update box2
-        box2->incrementPosX(-box2VelocityX);
-        if (box2->getPosX() <= leftWall->getPosX() + leftWall->getScaleX() / 2 + box2->getScaleX() / 2
-        || box2->getPosX() >= -leftWall->getPosX() - leftWall->getScaleX() / 2 - box2->getScaleX() / 2) {
-            box2VelocityX *= -1;
-        }
 
         //Floor: push(beg), pop inside (end)
+
+
+
         drawCube(floor->getPosX(), floor->getPosY(), floor->getPosZ(),
+                 0,0,0,
                  floor->getScaleX(), floor->getScaleY(), floor->getScaleZ());
-
-
         //LeftWall
         drawCube(leftWall->getPosX(), leftWall->getPosY(), leftWall->getPosZ(),
+                 0,0,0,
                  leftWall->getScaleX(), leftWall->getScaleY(), leftWall->getScaleZ());
-
         //FarWall
         drawCube(farWall->getPosX(), farWall->getPosY(), farWall->getPosZ(),
+                 0,0,0,
                  farWall->getScaleX(), farWall->getScaleY(), farWall->getScaleZ());
-
         //Box1
         drawCube(box1->getPosX(), box1->getPosY(), box1->getPosZ(),
+                 0,box1VelocityRotationY,0,
                  box1->getScaleX(), box1->getScaleY(), box1->getScaleZ());
-
-
-        //Box2
-        drawCube(box2->getPosX(), box2->getPosY(), box2->getPosZ(),
-                 box2->getScaleX(), box2->getScaleY(), box2->getScaleZ());
-
 
 
         drawAxis(1);

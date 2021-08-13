@@ -5,6 +5,8 @@
 #include "Transform.h"
 
 
+
+
 float Transform::getPosX() const {
     return posX;
 }
@@ -57,3 +59,27 @@ Transform::Transform(float posX, float posY, float posZ, float rotateX, float ro
                      float scaleY, float scaleZ) : posX(posX), posY(posY), posZ(posZ), rotateX(rotateX),
                                                    rotateY(rotateY), rotateZ(rotateZ), scaleX(scaleX), scaleY(scaleY),
                                                    scaleZ(scaleZ) {}
+
+float Transform::getRotateX() const {
+    return rotateX;
+}
+
+void Transform::setRotateX(float rotateX) {
+    Transform::rotateX = rotateX;
+}
+
+float Transform::getRotateY() const {
+    return rotateY;
+}
+
+void Transform::incrementRotateY() {
+    Transform::rotateY +=10;
+}
+
+float Transform::getRotateZ() const {
+    return rotateZ;
+}
+
+void Transform::setRotateZ(float rotateZ) {
+    Transform::rotateZ = rotateZ;
+}
