@@ -12,7 +12,7 @@ void drawWheels(float velocityTranslationX, float velocityTranslationY, float ve
 
 void drawShovel(float velocityTranslationX, float velocityTranslationY, float shovelRotationVelocity);
 
-void getState(const Uint8 *state, float &velocityTranslationX, float &velocityTranslationY, float &shovelRotationVelocity);
+void getState(const Uint8 *state, float &velocityTranslationX, float &velocityTranslationY, float &velocityRotation, float &shovelRotationVelocity);
 
 int main(int argc, char **args) {
     SDL_Window *win;
@@ -38,6 +38,7 @@ int main(int argc, char **args) {
     float velocityTranslationY = 0;
     float shovelRotationVelocity = 0;
 
+
     const Uint8 *state = nullptr;
 
     SDL_Event event;
@@ -56,7 +57,7 @@ int main(int argc, char **args) {
         }
 
         state = SDL_GetKeyboardState(NULL);
-        getState(state, velocityTranslationX, velocityTranslationY, shovelRotationVelocity);
+        getState(state, velocityTranslationX, velocityTranslationY, velocityRotation,  shovelRotationVelocity);
 
         drawAxis();
         drawBody(velocityTranslationX, velocityTranslationY);
@@ -78,12 +79,15 @@ int main(int argc, char **args) {
     return 0;
 }
 
-void getState(const Uint8 *state, float &velocityTranslationX, float &velocityTranslationY, float &shovelRotationVelocity) {
+void getState(const Uint8 *state, float &velocityTranslationX, float &velocityTranslationY, float &velocityRotation, float &shovelRotationVelocity) {
     if (state[SDL_SCANCODE_D]) {
         velocityTranslationX += 1;
+        velocityRotation += .1;
     }
     if (state[SDL_SCANCODE_A]) {
         velocityTranslationX -= 1;
+        //Create Axis for the shovel
+        velocityRotation -=.1;
     }
     if (state[SDL_SCANCODE_W]) {
         velocityTranslationY += 1;
@@ -143,20 +147,27 @@ void drawShovel(float velocityTranslationX, float velocityTranslationY, float sh
 void drawWheels(float velocityTranslationX, float velocityTranslationY, float velocityRotation) {
     glPopMatrix();
     glPushMatrix();
+
+
     glTranslatef(velocityTranslationX, velocityTranslationY, 0);
+   //glRotatef(velocityRotation,0,0,1);
+
+
     glBegin(GL_LINE_LOOP);
     int resolution = 100;
-    int radius = 25;
+    int radius = 50;
     int translateX = -100;
     drawCircle(resolution, radius, translateX);
     glEnd();
 
-    glPopMatrix();
-    glPushMatrix();
+
+
     glTranslatef(velocityTranslationX, velocityTranslationY, 0);
+    //glRotatef(velocityRotation,0,0,1);
     glBegin(GL_LINE_LOOP);
     translateX = 75;
     drawCircle(resolution, radius, translateX);
+
     glEnd();
 }
 
@@ -181,9 +192,12 @@ void drawCircle(int resolution, int radius, int translateX) {
         // 2M_PI                ----> Point #15
         // theta increment?     <---- Point #1
         float theta = 2.0f * M_PI * float(i) / float(resolution);//get the current angle
+        if (i%2 == 0)
+            radius = 45;
         float x = radius * cosf(theta);//calculate the x component
         float y = radius * sinf(theta);//calculate the y component
         glVertex2f(x + translateX, y);//output vertex
+        radius = 50;
     }
 }
 

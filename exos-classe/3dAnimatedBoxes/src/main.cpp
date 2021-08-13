@@ -32,11 +32,11 @@ int main(int argc, char **args) {
     glMatrixMode(GL_MODELVIEW);
 
     //Floor
-    Transform* floor = new Transform(0,0,0,4,.1,4);
-    Transform* leftWall = new Transform(-4, 2, 0, .1, 2, 4);
-    Transform* farWall = new Transform(0,2,-4,4,2,.5);
-    Transform* box1 = new Transform(2, .55, 0, .75, .5, .75);
-    Transform* box2 = new Transform(3,.55,2,.25,.5,.25);
+    auto* floor = new Transform(0,0,0,4,.1,4);
+    auto* leftWall = new Transform(-4, 2, 0, .1, 2, 4);
+    auto* farWall = new Transform(0,2,-4,4,2,.5);
+    auto* box1 = new Transform(2, .55, 0, .75, .5, .75);
+    auto* box2 = new Transform(3,.55,2,.25,.5,.25);
     float box1VelocityX = .01;
     float box2VelocityX = .005;
 
