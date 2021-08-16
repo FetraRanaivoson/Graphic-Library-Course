@@ -62,6 +62,7 @@ void drawCube(float translateX, float translateY, float translateZ, float rotate
     glTranslatef(translateX, translateY, translateZ);
     glRotatef(rotateY, 0, 1, 0);
     drawAxis(2);
+
     glScalef(scaleX, scaleY, scaleZ);
 
     //face du bas

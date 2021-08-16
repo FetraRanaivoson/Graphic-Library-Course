@@ -36,15 +36,17 @@ int main(int argc, char **args) {
     auto* leftWall = new Transform(-4, 2, 0,0,0,0, .1, 2, 4);
     auto* farWall = new Transform(0,2,-4,0,0,0,4,2,.5);
     auto* box1 = new Transform(2, .55, 0,0,0,0, .75, .5, .75);
-    auto* box2 = new Transform(3,.55,2,0,0,0,.25,.5,.25);
 
     //auto* box2 = new Transform(3,.55,2,.25,.5,.25);
     float box1VelocityPositionX = .01;
     float box1VelocityRotationY = 0;
     //float box2VelocityX = .005;
 
+    Uint32 button;
     const Uint8 *state;
     SDL_Event event;
+
+    int x, y;
 
     while (isRunning) {
 
@@ -66,29 +68,37 @@ int main(int argc, char **args) {
 
 
         state = SDL_GetKeyboardState(NULL);
+
+        SDL_PumpEvents();
+        button = SDL_GetMouseState(&x, &y);
+
+        if ((button & SDL_BUTTON_LMASK) != 0) {
+            box1->setRotateX(box1->getRotateX() + 1);
+        }
+        if ((button & SDL_BUTTON_RMASK) != 0) {
+            box1->setRotateX(box1->getRotateX() - 1);
+        }
+
         if (state[SDL_SCANCODE_UP])
             box1->incrementPosX(box1VelocityPositionX);
         if (state[SDL_SCANCODE_DOWN])
             box1->incrementPosX(-box1VelocityPositionX);
         if (state[SDL_SCANCODE_LEFT])
-            box1VelocityRotationY ++;
+            box1->setRotateX(box1->getRotateX() + 1);
         if (state[SDL_SCANCODE_RIGHT])
-            box1VelocityRotationY --;
+            box1->setRotateX(box1->getRotateX() - 1);
 
 
 
-        if (box1->getPosX() <= leftWall->getPosX() + leftWall->getScaleX()/2 + box1->getScaleX()) {
-            box1->incrementPosX(leftWall->getScaleX() );
-        }
-        if (box1->getPosX() >= -leftWall->getPosX() - leftWall->getScaleX()/2- box1->getScaleX()) {
-            box1->incrementPosX(-leftWall->getScaleX());
-        }
+//        if (box1->getPosX() <= leftWall->getPosX() + leftWall->getScaleX()/2 + box1->getScaleX()) {
+//            box1->incrementPosX(leftWall->getScaleX() );
+//        }
+//        if (box1->getPosX() >= -leftWall->getPosX() - leftWall->getScaleX()/2- box1->getScaleX()) {
+//            box1->incrementPosX(-leftWall->getScaleX());
+//        }
 
 
         //Floor: push(beg), pop inside (end)
-
-
-
         drawCube(floor->getPosX(), floor->getPosY(), floor->getPosZ(),
                  0,0,0,
                  floor->getScaleX(), floor->getScaleY(), floor->getScaleZ());
@@ -102,7 +112,7 @@ int main(int argc, char **args) {
                  farWall->getScaleX(), farWall->getScaleY(), farWall->getScaleZ());
         //Box1
         drawCube(box1->getPosX(), box1->getPosY(), box1->getPosZ(),
-                 0,box1VelocityRotationY,0,
+                 0,box1->getRotateX(),0,
                  box1->getScaleX(), box1->getScaleY(), box1->getScaleZ());
 
 

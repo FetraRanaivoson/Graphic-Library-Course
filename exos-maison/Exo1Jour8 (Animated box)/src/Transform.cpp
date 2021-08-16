@@ -12,7 +12,8 @@ float Transform::getPosX() const {
 }
 
 void Transform::incrementPosX(float posX) {
-    Transform::posX += posX;
+    Transform::posX += cos (rotateX * M_PI / 180) * posX;
+    Transform::posZ -= sin (rotateX * M_PI / 180) * posX;
 }
 
 float Transform::getPosY() const {

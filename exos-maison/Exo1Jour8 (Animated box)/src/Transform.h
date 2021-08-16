@@ -5,6 +5,7 @@
 #ifndef DEMOFIRSTSDL_TRANSFORM_H
 #define DEMOFIRSTSDL_TRANSFORM_H
 
+#include "cmath"
 
 class Transform {
 
