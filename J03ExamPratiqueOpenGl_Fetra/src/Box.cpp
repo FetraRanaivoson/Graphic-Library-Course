@@ -116,5 +116,18 @@ void Box::move(Direction direction) {
 }
 
 void Box::autoFall() {
-    posY += fallVelocity;
+    posY -= fallVelocity;
+}
+
+bool Box::collide(Box* box) {
+    return box->getPosX() > posX
+    && box->getPosX() + box->getScaleX() < posX + scaleX
+    && box->getPosY() > posY
+    && box->getPosY() + box->getScaleY() < posY + scaleY
+    && box->getPosZ() > posZ
+    && box->getPosZ() + box->getScaleZ() < posZ + scaleZ;
+}
+
+Box::~Box() {
+
 }

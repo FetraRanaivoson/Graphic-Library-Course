@@ -18,7 +18,7 @@ private:
     float scaleX, scaleY, scaleZ;
 
     float velocity = .1;
-    float fallVelocity = .1;
+    float fallVelocity = .05;
 
 public:
     Box(float posX, float posY, float posZ, float rotateX, float rotateY, float rotateZ, float scaleX,
@@ -28,6 +28,7 @@ public:
     void draw();
     void move(Direction direction);
     void autoFall();
+    bool collide(Box* box);
 
     float getPosX() const;
     void incrementPosX(float posX);
@@ -51,6 +52,8 @@ public:
     void setScaleZ(float scaleZ);
 
     void incrementPosY(float velocityY);
+
+    virtual ~Box();
 
 };
 

@@ -8,6 +8,7 @@
 #include "BoxSpawner.h"
 #include "time.h"
 #include <SDL2/SDL_image.h>
+#include <iostream>
 
 
 void getState(Box *box, Uint32 button, const Uint8 *state);
@@ -21,7 +22,7 @@ int main(int argc, char **args) {
     bool isRunning = true;
     SDL_Init(SDL_INIT_EVERYTHING);
     IMG_Init(IMG_INIT_JPG | IMG_INIT_PNG);
-    win = SDL_CreateWindow("Animated box", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, width, height,
+    win = SDL_CreateWindow("Animated player", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, width, height,
                            SDL_WINDOW_OPENGL);
 
     //creation du context
@@ -41,18 +42,20 @@ int main(int argc, char **args) {
     //Initialize objects
     Platform *bottomPlatform = new Platform(0, 0, 0, 0, 0, 0, 50, 1, 50);
     Platform *ceilingPlatform = new Platform(0, 55, 0, 0, 0, 0, 50, 1, 50);
-    Box *box = new Box(2, 3, 0, 0, 0, 0, 3, 3, 3);
-    BoxSpawner* boxSpawner = new BoxSpawner(ceilingPlatform->getPosX(), ceilingPlatform->getPosY(), ceilingPlatform->getPosZ());
+    Box *player = new Box(2, 3, 0, 0, 0, 0, 3, 3, 3);
+    BoxSpawner *boxSpawner = new BoxSpawner(ceilingPlatform->getPosX(), ceilingPlatform->getPosY(),
+                                            ceilingPlatform->getPosZ());
     SkyBox *skyBox = new SkyBox();
 
 
     Uint32 button;
     const Uint8 *state;
     SDL_Event event;
-
     Uint32 time = 0;
     Uint32 lastSpawn = 0;
     int timeToSpawn = rand() % 5000 + 1000;  //Btw 1000ms and 5000ms
+
+    std::vector<Box *> allBoxes;
 
     int mouseClickX, mouseClickY;
     while (isRunning) {
@@ -60,8 +63,8 @@ int main(int argc, char **args) {
 
 
         glLoadIdentity();
-        gluLookAt(box->getPosX() + 10, box->getPosY() + 5, box->getPosZ() + 10,
-                  box->getPosX(), box->getPosY(), box->getPosZ(),
+        gluLookAt(player->getPosX() + 50, player->getPosY() + 5, player->getPosZ() + 50,
+                  player->getPosX(), player->getPosY(), player->getPosZ(),
                   0, 1, 0);
 
         //Clean window
@@ -77,23 +80,31 @@ int main(int argc, char **args) {
         state = SDL_GetKeyboardState(NULL);
         SDL_PumpEvents();
         button = SDL_GetMouseState(&mouseClickX, &mouseClickY);
-        getState(box, button, state);
+        getState(player, button, state);
+
+
+        //Collisions
+        allBoxes = boxSpawner->getBoxes();
+        for (Box *box : allBoxes) {
+            if (player->collide(box)) {
+                std::cout << "Collided!!" << std::endl;
+            }
+        }
 
 
         //Draw objects
         bottomPlatform->draw();
         ceilingPlatform->draw();
-        box->draw();
+        player->draw();
         skyBox->draw();
 
 
         //Spawn boxes
         if (time - lastSpawn > timeToSpawn) {
-            boxSpawner->prepareBoxes();
+            int t = time - lastSpawn;
+            boxSpawner->randomizeBoxPosition();
             lastSpawn = time;
         }
-
-
         boxSpawner->spawnBoxes();
 
 

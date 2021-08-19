@@ -11,7 +11,7 @@
 class BoxSpawner {
 
     std::vector <Box*> boxes;
-    float ceilingX, ceilingY, ceilingZ;
+    float ceilingX = 1, ceilingY, ceilingZ = 1;
 
     float posX = 0;
     float posY = 0;
@@ -25,8 +25,10 @@ class BoxSpawner {
 
 public:
     BoxSpawner(float ceilingX, float ceilingY, float ceilingZ);
-    void prepareBoxes();
+    void randomizeBoxPosition();
     void spawnBoxes();
+
+    const std::vector<Box *> &getBoxes() const;
 };
 
 
