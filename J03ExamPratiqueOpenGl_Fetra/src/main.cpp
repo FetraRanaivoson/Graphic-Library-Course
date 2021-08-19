@@ -3,16 +3,19 @@
 #include <GL/glu.h>
 #include "Transform.h"
 #include "Utils.h"
-void drawAxis();
+#include "SkyBox.h"
+#include "Platform.h"
+#include <SDL2/SDL_image.h>
+
 
 int main(int argc, char **args) {
     SDL_Window *win;
     int width = 800, height = 600;
     bool isRunning = true;
     SDL_Init(SDL_INIT_EVERYTHING);
+    IMG_Init(IMG_INIT_JPG | IMG_INIT_PNG);
     win = SDL_CreateWindow("Animated box", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, width, height,
                            SDL_WINDOW_OPENGL);
-
 
 
     //creation du context
@@ -21,6 +24,7 @@ int main(int argc, char **args) {
 
     //appelle la matrice de projection
     glEnable(GL_DEPTH_TEST);
+    glEnable(GL_TEXTURE_2D);
     glMatrixMode(GL_PROJECTION);
 
     //initialise la matrice de projection à 0
@@ -30,15 +34,20 @@ int main(int argc, char **args) {
     gluPerspective(70, (double) 800 / 600, 1, 1000);
     glMatrixMode(GL_MODELVIEW);
 
-    //Floor
-    auto* floor = new Transform(0,0,0,0,0,0,4,.1,4);
-    auto* leftWall = new Transform(-4, 2, 0,0,0,0, .1, 2, 4);
-    auto* farWall = new Transform(0,2,-4,0,0,0,4,2,.5);
-    auto* box1 = new Transform(2, .55, 0,0,0,0, .75, .5, .75);
+    ///////////////////
+    auto* bottomFloor = new Transform(0, 0, 0, 0, 0, 0, 50, 1, 50);
+    auto* ceiling = new Transform(0, 75, 0, 0, 0, 0, 50, 1, 50);
+    Platform* bottomPlatform = new Platform(0, 0, 0, 0, 0, 0, 50, 1, 50);
+    Platform* ceilingPlatform = new Platform(0, 75, 0, 0, 0, 0, 50, 1, 50);
+    ///////////////////
 
-    float box1VelocityPositionX = .01;
-    float box1VelocityRotationY = 0;
-    //float box2VelocityX = .005;
+
+
+
+    auto* boxTransform = new Transform(2, 3, 0, 0, 0, 0,3 , 3, 3);
+    float boxVelocity = .1;
+
+    SkyBox* skyBox = new SkyBox();
 
     Uint32 button;
     const Uint8 *state;
@@ -49,7 +58,9 @@ int main(int argc, char **args) {
     while (isRunning) {
 
         glLoadIdentity();
-        gluLookAt(3, 5, 7, 0, 0, 0, 0, 1, 0);
+        gluLookAt(boxTransform->getPosX() + 10, boxTransform->getPosY(), boxTransform->getPosZ() + 10,
+                  boxTransform->getPosX(), boxTransform->getPosY(), boxTransform->getPosZ(),
+                  0, 1, 0);
 
 
         //Nettoyer la fenêtre
@@ -71,43 +82,46 @@ int main(int argc, char **args) {
         button = SDL_GetMouseState(&x, &y);
 
         if ((button & SDL_BUTTON_LMASK) != 0) {
-            box1->setRotateX(box1->getRotateX() + 1);
+            boxTransform->incrementPosX(boxVelocity);
         }
         if ((button & SDL_BUTTON_RMASK) != 0) {
-            box1->setRotateX(box1->getRotateX() - 1);
+            boxTransform->incrementPosX(-boxVelocity);
         }
 
         if (state[SDL_SCANCODE_UP])
-            box1->incrementPosX(box1VelocityPositionX);
+            boxTransform->incrementPosY(boxVelocity);
         if (state[SDL_SCANCODE_DOWN])
-            box1->incrementPosX(-box1VelocityPositionX);
+            boxTransform->incrementPosY(-boxVelocity);
+
         if (state[SDL_SCANCODE_LEFT])
-            box1->setRotateX(box1->getRotateX() + 1);
+            boxTransform->setRotateX(boxTransform->getRotateX() + 1);
         if (state[SDL_SCANCODE_RIGHT])
-            box1->setRotateX(box1->getRotateX() - 1);
+            boxTransform->setRotateX(boxTransform->getRotateX() - 1);
 
 
-        //Floor: push(beg), pop inside (end)
-        drawCube(floor->getPosX(), floor->getPosY(), floor->getPosZ(),
-                 0,0,0,
-                 floor->getScaleX(), floor->getScaleY(), floor->getScaleZ());
-        //LeftWall
-        drawCube(leftWall->getPosX(), leftWall->getPosY(), leftWall->getPosZ(),
-                 0,0,0,
-                 leftWall->getScaleX(), leftWall->getScaleY(), leftWall->getScaleZ());
-        //FarWall
-        drawCube(farWall->getPosX(), farWall->getPosY(), farWall->getPosZ(),
-                 0,0,0,
-                 farWall->getScaleX(), farWall->getScaleY(), farWall->getScaleZ());
-        //Box1
-        drawCube(box1->getPosX(), box1->getPosY(), box1->getPosZ(),
-                 0,box1->getRotateX(),0,
-                 box1->getScaleX(), box1->getScaleY(), box1->getScaleZ());
+        //Floor
+        Utils::drawCube(bottomFloor->getPosX(), bottomFloor->getPosY(), bottomFloor->getPosZ(),
+                        0, 0, 0,
+                        bottomFloor->getScaleX(), bottomFloor->getScaleY(), bottomFloor->getScaleZ());
+
+        //Ceiling
+        Utils::drawCube(ceiling->getPosX(), ceiling->getPosY(), ceiling->getPosZ(),
+                        0, 0, 0,
+                        ceiling->getScaleX(), ceiling->getScaleY(), ceiling->getScaleZ());
+
+        //Box
+        Utils::drawCube(boxTransform->getPosX(), boxTransform->getPosY(), boxTransform->getPosZ(),
+                        0,boxTransform->getRotateX(),0,
+                        boxTransform->getScaleX(), boxTransform->getScaleY(), boxTransform->getScaleZ());
+
+        //SkyBox
+        skyBox->draw();
 
 
-        drawAxis(1);
 
 
+
+        Utils::drawAxis(1);
         //mise a jour de l'écran
         glFlush();
         SDL_GL_SwapWindow(win);

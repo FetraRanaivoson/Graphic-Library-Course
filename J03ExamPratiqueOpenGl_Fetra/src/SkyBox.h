@@ -9,9 +9,18 @@
 #include <SDL2/SDL_image.h>
 #include <GL/gl.h>
 #include <GL/glu.h>
+#include "Utils.h"
 
 class SkyBox {
-    Gluint id;
+private:
+    GLuint idSkyBox;
+
+public:
+    SkyBox();
+
+    void draw();
+
+
 };
 
 

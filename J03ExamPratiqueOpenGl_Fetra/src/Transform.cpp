@@ -84,3 +84,7 @@ float Transform::getRotateZ() const {
 void Transform::setRotateZ(float rotateZ) {
     Transform::rotateZ = rotateZ;
 }
+
+void Transform::incrementPosY(float velocityY) {
+    Transform::posY += 1 * velocityY;
+}

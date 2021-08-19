@@ -4,112 +4,29 @@
 
 #ifndef DEMOFIRSTSDL_UTILS_H
 #define DEMOFIRSTSDL_UTILS_H
-
 #include <GL/gl.h>
-
-void drawAxis(float taille) {
-
-
-    glPushMatrix();
-
-    glScaled(taille, taille, taille);
-    glLineWidth(2);
-    glBegin(GL_LINES);
-    //axe des x
-    glColor3f(1, 0, 0);
-    glVertex3f(0, 0, 0);
-    glVertex3f(1, 0, 0);
-
-    //axe des y
-    glColor3f(0, 1, 0);
-    glVertex3f(0, 0, 0);
-    glVertex3f(0, 1, 0);
-
-    //axe des x
-    glColor3f(0, 0, 1);
-    glVertex3f(0, 0, 0);
-    glVertex3f(0, 0, 1);
-    glEnd();
-    glLineWidth(1);
-
-    glPopMatrix();
-
-}
-
-void drawQuad(float width, float height) {
-
-    glPushMatrix();
+#include <string>
+#include <SDL2/SDL_image.h>
+class Utils {
+public:
+    static void drawAxis(float taille);
+    static void drawQuads(float height, float lenght, float red, float green, float blue);
+    static void drawQuadsHollow(float height, float lenght, float red, float green, float blue);
+    static void drawCube(float tailleX, float tailleY, float tailleZ);
+    static void drawCube(float tailleX, float tailleY, float tailleZ, float red, float green, float blue);
+    static void drawCube(float tailleX, float tailleY, float tailleZ, GLuint idTexture);
 
 
 
-    glScalef(width, height, 1);
-    glBegin(GL_QUADS);
-    glColor3f(0, 1, 1);
-    glVertex2f(0, 0);
-    glVertex2f(1, 0);
-    glVertex2f(1, 1);
-    glVertex2f(0, 1);
-    glEnd();
+    static void drawCube(float translateX, float translateY, float translateZ, float rotateX, float rotateY, float rotateZ,
+                  float scaleX, float scaleY, float scaleZ) ;
 
-    glPopMatrix();
 
-}
 
-void drawCube(float translateX, float translateY, float translateZ, float rotateX, float rotateY, float rotateZ,
-              float scaleX, float scaleY, float scaleZ) {
 
-    glPushMatrix();
-    glTranslatef(translateX, translateY, translateZ);
-    glRotatef(rotateY, 0, 1, 0);
-    drawAxis(2);
 
-    glScalef(scaleX, scaleY, scaleZ);
-
-    //face du bas
-    glBegin(GL_QUADS);
-    glColor3f(.1, .1, 0.1);
-    glVertex3f(-1, -1, 1);
-    glVertex3f(1, -1, 1);
-    glVertex3f(1, -1, -1);
-    glVertex3f(-1, -1, -1);
-
-    //face du gauche
-    glColor3f(.1, .1, .1);
-    glVertex3f(-1, -1, 1);
-    glVertex3f(1, -1, 1);
-    glVertex3f(1, 1, 1);
-    glVertex3f(-1, 1, 1);
-
-    //face du gauche
-    glColor3f(1, 0, 0);
-    glVertex3f(-1, -1, 1);
-    glVertex3f(-1, -1, -1);
-    glVertex3f(-1, 1, -1);
-    glVertex3f(-1, 1, 1);
-
-    //face du droite
-    glColor3f(0, 1, 0);
-    glVertex3f(-1, -1, -1);
-    glVertex3f(1, -1, -1);
-    glVertex3f(1, 1, -1);
-    glVertex3f(-1, 1, -1);
-
-//    //face du droite
-    glColor3f(.15, .15, 0.15);
-    glVertex3f(1, -1, 1);
-    glVertex3f(1, -1, -1);
-    glVertex3f(1, 1, -1);
-    glVertex3f(1, 1, 1);
-
-//    //face du droite
-    glColor3f(.5, .5, 0.5);
-    glVertex3f(-1, 1, 1);
-    glVertex3f(1, 1, 1);
-    glVertex3f(1, 1, -1);
-    glVertex3f(-1, 1, -1);
-    glEnd();
-
-    glPopMatrix();
-}
-
+    static SDL_Surface * flipSurface(SDL_Surface * surface);
+    static GLuint loadTexture(std::string path);
+    static void drawSkybox(float tailleX, float tailleY, float tailleZ, GLuint idTexture);
+};
 #endif //DEMOFIRSTSDL_UTILS_H

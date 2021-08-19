@@ -39,6 +39,8 @@ public:
     float getScaleZ() const;
     void setScaleZ(float scaleZ);
 
+    void incrementPosY(float velocityY);
+
 };
 
 
