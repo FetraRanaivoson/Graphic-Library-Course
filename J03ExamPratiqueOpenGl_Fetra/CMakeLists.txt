@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.17)
 set(
         project_name
-        ExamPratique
+        demoFirstSDL
 )
 file(
         GLOB_RECURSE
@@ -17,7 +17,7 @@ file(
 #)
 project(${project_name})
 set(CMAKE_CXX_STANDARD 17)
-add_executable(${project_name} ${source_file} src/Utilities/Transform.cpp src/Utilities/Transform.h)
+add_executable(${project_name} ${source_file} src/Transform.cpp src/Transform.h)
 if (WIN32)
     target_link_libraries(
             ${project_name}

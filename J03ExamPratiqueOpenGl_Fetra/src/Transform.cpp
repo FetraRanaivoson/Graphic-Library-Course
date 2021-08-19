@@ -11,16 +11,10 @@ float Transform::getPosX() const {
     return posX;
 }
 
-void Transform::incrementPosX(float velocityX) {
-    Transform::posX += cos (rotateX * M_PI / 180) * velocityX;
-    Transform::posZ -= sin (rotateX * M_PI / 180) * velocityX;
+void Transform::incrementPosX(float posX) {
+    Transform::posX += cos (rotateX * M_PI / 180) * posX;
+    Transform::posZ -= sin (rotateX * M_PI / 180) * posX;
 }
-
-
-void Transform::incrementPosY(float velocityY) {
-    Transform::posY = posY * velocityY;
-}
-
 
 float Transform::getPosY() const {
     return posY;
@@ -89,12 +83,4 @@ float Transform::getRotateZ() const {
 
 void Transform::setRotateZ(float rotateZ) {
     Transform::rotateZ = rotateZ;
-}
-
-void Transform::setPosX(float posX) {
-
-}
-
-void Transform::setRotateY(float rotateY) {
-
 }

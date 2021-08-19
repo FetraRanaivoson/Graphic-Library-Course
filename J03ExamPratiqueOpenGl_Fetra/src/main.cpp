@@ -1,8 +1,8 @@
 #include <SDL2/SDL.h>
 #include <GL/gl.h>
 #include <GL/glu.h>
-#include "Utilities/Transform.h"
-#include "Utilities/Utils.h"
+#include "Transform.h"
+#include "Utils.h"
 void drawAxis();
 
 int main(int argc, char **args) {
@@ -10,7 +10,7 @@ int main(int argc, char **args) {
     int width = 800, height = 600;
     bool isRunning = true;
     SDL_Init(SDL_INIT_EVERYTHING);
-    win = SDL_CreateWindow("ExamPratique", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, width, height,
+    win = SDL_CreateWindow("Animated box", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, width, height,
                            SDL_WINDOW_OPENGL);
 
 
@@ -36,7 +36,6 @@ int main(int argc, char **args) {
     auto* farWall = new Transform(0,2,-4,0,0,0,4,2,.5);
     auto* box1 = new Transform(2, .55, 0,0,0,0, .75, .5, .75);
 
-    //auto* box2 = new Transform(3,.55,2,.25,.5,.25);
     float box1VelocityPositionX = .01;
     float box1VelocityRotationY = 0;
     //float box2VelocityX = .005;
@@ -86,15 +85,6 @@ int main(int argc, char **args) {
             box1->setRotateX(box1->getRotateX() + 1);
         if (state[SDL_SCANCODE_RIGHT])
             box1->setRotateX(box1->getRotateX() - 1);
-
-
-
-//        if (box1->getPosX() <= leftWall->getPosX() + leftWall->getScaleX()/2 + box1->getScaleX()) {
-//            box1->incrementPosX(leftWall->getScaleX() );
-//        }
-//        if (box1->getPosX() >= -leftWall->getPosX() - leftWall->getScaleX()/2- box1->getScaleX()) {
-//            box1->incrementPosX(-leftWall->getScaleX());
-//        }
 
 
         //Floor: push(beg), pop inside (end)

@@ -18,34 +18,26 @@ public:
     Transform(float posX, float posY, float posZ, float rotateX, float rotateY, float rotateZ, float scaleX,
               float scaleY, float scaleZ);
 
-    //GETTERS
     float getPosX() const;
+    void incrementPosX(float posX);
     float getPosY() const;
-    float getPosZ() const;
-    float getRotateX() const;
-    float getRotateY() const;
-    float getRotateZ() const;
-    float getScaleX() const;
-    float getScaleY() const;
-    float getScaleZ() const;
-
-
-
-    //SETTERS
-    void setPosX(float posX);
     void setPosY(float posY);
-    void setPosZ(float posZ);
+
+    float getRotateX() const;
     void setRotateX(float rotateX);
-    void setRotateY(float rotateY);
-    void setRotateZ(float rotateZ);
-    void setScaleX(float scaleX);
-    void setScaleY(float scaleY);
-    void setScaleZ(float scaleZ);
-
-
-    void incrementPosX(float velocityX);
-    void incrementPosY(float velocityY);
+    float getRotateY() const;
     void incrementRotateY();
+    float getRotateZ() const;
+
+    void setRotateZ(float rotateZ);
+    float getPosZ() const;
+    void setPosZ(float posZ);
+    float getScaleX() const;
+    void setScaleX(float scaleX);
+    float getScaleY() const;
+    void setScaleY(float scaleY);
+    float getScaleZ() const;
+    void setScaleZ(float scaleZ);
 
 };
 
