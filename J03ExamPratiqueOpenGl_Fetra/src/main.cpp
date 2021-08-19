@@ -1,8 +1,8 @@
 #include <SDL2/SDL.h>
 #include <GL/gl.h>
 #include <GL/glu.h>
-#include "Transform.h"
-
+#include "Utilities/Transform.h"
+#include "Utilities/Utils.h"
 void drawAxis();
 
 int main(int argc, char **args) {
@@ -10,7 +10,7 @@ int main(int argc, char **args) {
     int width = 800, height = 600;
     bool isRunning = true;
     SDL_Init(SDL_INIT_EVERYTHING);
-    win = SDL_CreateWindow("Animated box", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, width, height,
+    win = SDL_CreateWindow("ExamPratique", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, width, height,
                            SDL_WINDOW_OPENGL);
 
 
