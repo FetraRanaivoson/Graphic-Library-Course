@@ -17,7 +17,7 @@ file(
 )
 project(${project_name})
 set(CMAKE_CXX_STANDARD 17)
-add_executable(${project_name} ${source_file} src/Transform.cpp src/Transform.h)
+add_executable(${project_name} ${source_file} src/Box.cpp src/Box.h)
 if (WIN32)
     target_link_libraries(
             ${project_name}

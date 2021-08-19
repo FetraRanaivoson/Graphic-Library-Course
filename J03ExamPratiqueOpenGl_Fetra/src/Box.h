@@ -2,21 +2,32 @@
 // Created by Fetra on 8/12/2021.
 //
 
-#ifndef DEMOFIRSTSDL_TRANSFORM_H
-#define DEMOFIRSTSDL_TRANSFORM_H
+#ifndef DEMOFIRSTSDL_BOX_H
+#define DEMOFIRSTSDL_BOX_H
 
 #include "cmath"
+#include "Utils.h"
 
-class Transform {
+
+enum Direction {FORWARD, BACKWARD, UP, DOWN, ROTATE_LEFT, ROTATE_RIGHT};
+class Box {
 
 private:
     float posX, posY, posZ;
     float rotateX,rotateY,rotateZ;
     float scaleX, scaleY, scaleZ;
 
+    float velocity = .1;
+    float fallVelocity = .1;
+
 public:
-    Transform(float posX, float posY, float posZ, float rotateX, float rotateY, float rotateZ, float scaleX,
+    Box(float posX, float posY, float posZ, float rotateX, float rotateY, float rotateZ, float scaleX,
               float scaleY, float scaleZ);
+
+
+    void draw();
+    void move(Direction direction);
+    void autoFall();
 
     float getPosX() const;
     void incrementPosX(float posX);
@@ -44,4 +55,4 @@ public:
 };
 
 
-#endif //DEMOFIRSTSDL_TRANSFORM_H
+#endif //DEMOFIRSTSDL_BOX_H
