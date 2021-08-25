@@ -18,9 +18,9 @@ public:
     LevelManager();
     LevelManager(int windowWidth, int windowHeight, int squareWidth, int squareHeight);
 
-    void saveRandomBinaryNumbers(int columnCount, int rowCount);
+    void saveRandomNumbers(int columnCount, int rowCount);
 
-    void loadRandomBinaryNumbers(int columnCount, std::vector<Level*> &retrievedNumbers);
+    void loadRandomNumbers(int columnCount, std::vector<Level*> &retrievedNumbers);
 
     int getColumnCount();
     int getRowCount();
