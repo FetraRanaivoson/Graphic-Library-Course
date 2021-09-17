@@ -9,6 +9,7 @@
 
 class Carre {
 private:
+
     SDL_Rect *position;
     SDL_Color *color;
     int velocityX;

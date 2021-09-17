@@ -178,11 +178,11 @@ void positionEnemies(int columnCount, int rowCount, const std::vector<Level *> &
 
 std::vector<Level *> getLevel(int columnCount, int rowCount, LevelManager *levelManager) {
     // ACTIVATE THIS TO APPEND A SET OF RANDOM BINARY NUMBER (col x row) TO FILE
-    //levelManager->saveRandomBinaryNumbers(columnCount, rowCount);
+    //levelManager->saveRandomNumbers(columnCount, rowCount);
 
     std::vector<Level *> retrievedNumbers;
     // ACTIVATE THIS TO LOAD A SET OF BINARY NUMBER FROM FILE
-    levelManager->loadRandomBinaryNumbers(columnCount, retrievedNumbers);
+    levelManager->loadRandomNumbers(columnCount, retrievedNumbers);
 
     // VERIFY IF DATA EXISTS ON THE FILE
     if (!retrievedNumbers.empty()) {

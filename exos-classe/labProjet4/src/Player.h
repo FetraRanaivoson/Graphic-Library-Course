@@ -7,16 +7,21 @@
 
 
 #include <SDL2/SDL.h>
+#include <vector>
+
 
 enum Direction{LEFT, RIGHT, UP, DOWN};
 
 class Player {
+
+
     SDL_Rect* position;
     int wI, hI;
     int velocity;
 
-    int windowW, windowH;
+private:
 
+    int windowW, windowH;
     int collideCount;
 
 public:
