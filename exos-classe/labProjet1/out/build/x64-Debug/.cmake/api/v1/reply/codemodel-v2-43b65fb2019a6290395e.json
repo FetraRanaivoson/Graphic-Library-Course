@@ -1,0 +1,59 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.17"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "labProjet1",
+					"targetIndexes" : 
+					[
+						0
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "labProjet1::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-labProjet1-Debug-7e06489185bec954e67f.json",
+					"name" : "labProjet1",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "E:/ISI/COURS/GAME SESSION/Lib-Graphique/j03-lib-graphique-aout-2021-fetra/exos-classe/labProjet1/out/build/x64-Debug",
+		"source" : "E:/ISI/COURS/GAME SESSION/Lib-Graphique/j03-lib-graphique-aout-2021-fetra/exos-classe/labProjet1"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 2
+	}
+}

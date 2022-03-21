@@ -1,0 +1,59 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.20"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "Exo2Jour1",
+					"targetIndexes" : 
+					[
+						0
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "Exo2Jour1::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-Exo2Jour1-Debug-294befe03ecda55c343a.json",
+					"name" : "Exo2Jour1",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "E:/ISI/COURS/GAME SESSION/Lib-Graphique/j03-lib-graphique-aout-2021-fetra/exos-maison/Exo2Jour1 (Image Manager)/out/build/x64-Debug",
+		"source" : "E:/ISI/COURS/GAME SESSION/Lib-Graphique/j03-lib-graphique-aout-2021-fetra/exos-maison/Exo2Jour1 (Image Manager)"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 2
+	}
+}

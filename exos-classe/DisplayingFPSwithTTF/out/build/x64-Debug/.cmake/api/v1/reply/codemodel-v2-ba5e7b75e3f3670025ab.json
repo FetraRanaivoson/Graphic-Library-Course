@@ -1,0 +1,59 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.17"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "AffichageFPS",
+					"targetIndexes" : 
+					[
+						0
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "AffichageFPS::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-AffichageFPS-Debug-3f1bb0a34158afe4009f.json",
+					"name" : "AffichageFPS",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "E:/ISI/COURS/GAME SESSION/Lib-Graphique/j03-lib-graphique-aout-2021-fetra/exos-classe/DisplayingFPSwithTTF/out/build/x64-Debug",
+		"source" : "E:/ISI/COURS/GAME SESSION/Lib-Graphique/j03-lib-graphique-aout-2021-fetra/exos-classe/DisplayingFPSwithTTF"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 2
+	}
+}

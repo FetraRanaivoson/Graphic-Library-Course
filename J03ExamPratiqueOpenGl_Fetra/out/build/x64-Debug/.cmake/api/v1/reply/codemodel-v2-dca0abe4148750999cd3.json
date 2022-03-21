@@ -1,0 +1,59 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.17"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "demoFirstSDL",
+					"targetIndexes" : 
+					[
+						0
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "demoFirstSDL::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-demoFirstSDL-Debug-c48e6aa69d3543d3827d.json",
+					"name" : "demoFirstSDL",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "E:/ISI/COURS/GAME SESSION/Lib-Graphique/j03-lib-graphique-aout-2021-fetra/J03ExamPratiqueOpenGl_Fetra/out/build/x64-Debug",
+		"source" : "E:/ISI/COURS/GAME SESSION/Lib-Graphique/j03-lib-graphique-aout-2021-fetra/J03ExamPratiqueOpenGl_Fetra"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 2
+	}
+}
