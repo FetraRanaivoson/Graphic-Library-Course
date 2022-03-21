@@ -1,18 +1,7 @@
-#define SDL_MAIN_HANDLED
-#include <SDL2/SDL.h>
-#include <SDL2/SDL_image.h>
-
-#ifdef _WIN32
-#include <windows.h>
-#endif
-#include <gl/GL.h>
-#include <gl/GLU.h>
-
-#include "Box.h"
-#include "Utils.h"
 #include "SkyBox.h"
 #include "Platform.h"
 #include "BoxSpawner.h"
+
 #include "time.h"
 
 #include <iostream>
@@ -114,7 +103,8 @@ int main(int argc, char **args) {
         boxSpawner->spawnBoxes();
 
 
-        Utils::drawAxis(1);
+        //Utils::drawAxis(1);
+        
         //Update screen
         glFlush();
         SDL_GL_SwapWindow(win);

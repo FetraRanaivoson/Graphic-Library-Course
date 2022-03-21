@@ -3,7 +3,8 @@
 //
 
 #include "SkyBox.h"
-#include "Utils.cpp"
+
+
 
 SkyBox::SkyBox() {
     idSkyBox = Utils::loadTexture("./assets/skybox.png");

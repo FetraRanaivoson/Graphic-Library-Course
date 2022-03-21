@@ -4,6 +4,7 @@
 
 #include <vector>
 
+#include "Box.h"
 
 class BoxSpawner {
 

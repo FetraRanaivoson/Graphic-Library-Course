@@ -3,7 +3,6 @@
 //
 
 #include "BoxSpawner.h"
-#include "Box.h"
 
 BoxSpawner::BoxSpawner(float ceilingX, float ceilingY, float ceilingZ)
         : ceilingX(ceilingX), ceilingY(ceilingY), ceilingZ(ceilingZ) {

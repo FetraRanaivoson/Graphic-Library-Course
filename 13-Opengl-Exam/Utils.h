@@ -1,7 +1,7 @@
 //
 // Created by jlidou on 2021-08-12.
 //
-
+#define SDL_MAIN_HANDLED
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 
@@ -13,6 +13,8 @@
 
 #include <string>
 
+#ifndef Utils_H
+#define Utils_H
 class Utils {
 public:
     static void drawAxis(float taille);
@@ -35,3 +37,4 @@ public:
     static GLuint loadTexture(std::string path);
     static void drawSkybox(float tailleX, float tailleY, float tailleZ, GLuint idTexture);
 };
+#endif

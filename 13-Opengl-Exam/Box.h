@@ -4,6 +4,9 @@
 
 #define _USE_MATH_DEFINES
 #include <cmath>
+
+#include "Utils.h"
+
 enum Direction {FORWARD, BACKWARD, UP, DOWN, ROTATE_LEFT, ROTATE_RIGHT};
 
 class Box {

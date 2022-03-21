@@ -3,9 +3,6 @@
 //
 
 #include "Box.h"
-#include "Utils.cpp"
-
-
 
 
 float Box::getPosX() const {
@@ -96,22 +93,22 @@ void Box::draw() {
 }
 
 void Box::move(Direction direction) {
-    if (direction == FORWARD) {
+    if (direction == Direction::FORWARD) {
         incrementPosX(velocity);
     }
-    if (direction == BACKWARD) {
+    if (direction == Direction::BACKWARD) {
         incrementPosX(-velocity);
     }
-    if (direction == UP) {
+    if (direction == Direction::UP) {
         incrementPosY(velocity);
     }
-    if (direction == DOWN) {
+    if (direction == Direction::DOWN) {
         incrementPosY(-velocity);
     }
-    if (direction == ROTATE_LEFT) {
+    if (direction == Direction::ROTATE_LEFT) {
         setRotateX(rotateX + 1);
     }
-    if (direction == ROTATE_RIGHT) {
+    if (direction == Direction::ROTATE_RIGHT) {
         setRotateX(rotateX - 1);
     }
 }
