@@ -69,15 +69,15 @@ int main() {
 
         //Update box1
         box1->incrementPosX(-box1VelocityX);
-        if (box1->getPosX() <= leftWall->getPosX() + leftWall->getScaleX() / 2 + box1->getScaleX() / 2
-            || box1->getPosX() >= -leftWall->getPosX() - leftWall->getScaleX() / 2 - box1->getScaleX() / 2) {
+        if (box1->getPosX() <= leftWall->getPosX() + leftWall->getScaleX() / 2 + box1->getScaleX() 
+            || box1->getPosX() >= -leftWall->getPosX() - leftWall->getScaleX() / 2 - box1->getScaleX() ) {
             box1VelocityX *= -1;
         }
 
         //Update box2
         box2->incrementPosX(-box2VelocityX);
-        if (box2->getPosX() <= leftWall->getPosX() + leftWall->getScaleX() / 2 + box2->getScaleX() / 2
-        || box2->getPosX() >= -leftWall->getPosX() - leftWall->getScaleX() / 2 - box2->getScaleX() / 2) {
+        if (box2->getPosX() <= leftWall->getPosX() + leftWall->getScaleX() / 2 + box2->getScaleX()
+        || box2->getPosX() >= -leftWall->getPosX() - leftWall->getScaleX() / 2 - box2->getScaleX()) {
             box2VelocityX *= -1;
         }
 

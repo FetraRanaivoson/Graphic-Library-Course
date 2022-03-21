@@ -23,7 +23,7 @@ void drawAxis(float taille) {
     glVertex3f(0, 0, 0);
     glVertex3f(0, 1, 0);
 
-    //axe des x
+    //axe des z
     glColor3f(0, 0, 1);
     glVertex3f(0, 0, 0);
     glVertex3f(0, 0, 1);
