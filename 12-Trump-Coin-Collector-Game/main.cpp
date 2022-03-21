@@ -8,11 +8,15 @@
 
 #include "Coin.h"
 #include "Trump.h"
+#include <queue>
+
+#include "TextPrinter.h"
 
 SDL_Window *win;
 SDL_Renderer *renderer;
 int windowWidth = 800, windowHeight = 600;
 
+using namespace TrumpTextPrinter;
 
 int main(int argc, char **args) {
 
@@ -32,11 +36,15 @@ int main(int argc, char **args) {
         SDL_Log("Null");
     }
 
+    int score = 0;
+    TextPrinter* textPrinter = new TextPrinter(renderer, score, windowWidth, windowHeight);
+
     //std::vector<Coin *> coins;
+    std::queue<Coin*> coins;
     Coin *coin = new Coin(renderer, windowWidth, windowHeight, rand() % windowWidth, rand() % windowHeight);
     //coins.push_back(coin);
-
-
+    coins.emplace(coin);
+ 
     SDL_Texture *sprite = IMG_LoadTexture(renderer, "./assets/trump_run.png");
     int wS = 0, hS = 0;
     int col = 0, row = 0;
@@ -71,7 +79,6 @@ int main(int argc, char **args) {
         if (event.type == SDL_QUIT) {
             isRunning = false;
         }
-
 
         //dessin des différents objet dans la fenêtre
         state = SDL_GetKeyboardState(NULL);
@@ -131,19 +138,29 @@ int main(int argc, char **args) {
         //trump->update(renderer);
 
 
-        coin->update(renderer, SDL_GetTicks());
+        coins.front()->update(renderer, SDL_GetTicks());
 
 
 
         //for (int i= 0; i < coins.size(); i++) {
-        if (positionScreen.x + positionScreen.w > coin->getPositionScreenCoin().x
-            && positionScreen.x < coin->getPositionScreenCoin().x + coin->getPositionScreenCoin().w
-            && positionScreen.y + positionScreen.h > coin->getPositionScreenCoin().y
-            && positionScreen.y < coin->getPositionScreenCoin().y + coin->getPositionScreenCoin().h) {
-            // coins.erase(coins.cbegin() + i);
+        if (positionScreen.x + positionScreen.w > coins.front()->getPositionScreenCoin().x
+            && positionScreen.x < coins.front()->getPositionScreenCoin().x + coins.front()->getPositionScreenCoin().w
+            && positionScreen.y + positionScreen.h > coins.front()->getPositionScreenCoin().y
+            && positionScreen.y <  coins.front()->getPositionScreenCoin().y + coins.front()->getPositionScreenCoin().h) {
+            delete coins.front();
+            coins.pop();
+
+            coins.emplace(new Coin(renderer, windowWidth, windowHeight, rand() % windowWidth, rand() % windowHeight));
+
+            score++;
+
             Mix_PlayChannel(1, bip, 0);
         }
         //}
+
+
+        //Display scores
+        textPrinter->displayScore(renderer, score);
 
 
         //pause dans l'image
@@ -152,7 +169,10 @@ int main(int argc, char **args) {
         SDL_RenderPresent(renderer);
     }
 
-    coin->destroy();
+    delete coins.front();
+    coins.pop();
+    textPrinter->~TextPrinter();
+
     Mix_FreeChunk(bip);
     SDL_CloseAudio();
     SDL_DestroyRenderer(renderer);

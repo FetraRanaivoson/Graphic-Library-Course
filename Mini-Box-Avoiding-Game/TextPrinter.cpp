@@ -1,8 +1,9 @@
+
 //
 // Created by Fetra on 8/9/2021.
 //
 
-#include "TextPrinter.h"
+#include "../Mini-Box-Avoiding-Game/TextPrinter.h"
 
 TextPrinter::TextPrinter(SDL_Renderer* renderer, int& touchNumber, int windowW, int windowH)
         : touchNumber(touchNumber), windowW(windowW), windowH(windowH) {

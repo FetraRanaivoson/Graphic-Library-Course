@@ -141,11 +141,25 @@
   <ItemGroup>
     <ClCompile Include="Coin.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="TextPrinter.cpp" />
     <ClCompile Include="Trump.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Coin.h" />
+    <ClInclude Include="TextPrinter.h" />
     <ClInclude Include="Trump.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="assets\coin-sprite.png" />
+    <Image Include="assets\coin.png" />
+    <Image Include="assets\trump_run.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="assets\coins.ogg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Font Include="assets\fontarcade.ttf" />
+    <Font Include="fontarcade.ttf" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

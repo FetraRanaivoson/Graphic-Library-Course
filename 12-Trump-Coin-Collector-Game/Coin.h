@@ -6,7 +6,7 @@
 #include "SDL2/SDL_image.h"
 
 class Coin {
-    SDL_Texture *coinTexure;
+    SDL_Texture *coinTexture;
 
     int colCoin = 0, rowCoin = 0;
     int wCoinS = 0, hCoinS = 0;
@@ -21,6 +21,10 @@ class Coin {
     int w, h;
 public:
     Coin(SDL_Renderer* renderer, int w, int h, int initPosX, int initPosY);
+
+    ~Coin();
+
+
 
     void update(SDL_Renderer* renderer, Uint32 time);
 

@@ -24,6 +24,9 @@
     <ClCompile Include="Trump.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="TextPrinter.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Coin.h">
@@ -32,5 +35,32 @@
     <ClInclude Include="Trump.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="TextPrinter.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="assets\coin.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\coin-sprite.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\trump_run.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="assets\coins.ogg">
+      <Filter>Resource Files</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Font Include="assets\fontarcade.ttf">
+      <Filter>Resource Files</Filter>
+    </Font>
+    <Font Include="fontarcade.ttf">
+      <Filter>Source Files</Filter>
+    </Font>
   </ItemGroup>
 </Project>

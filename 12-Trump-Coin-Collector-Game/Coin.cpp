@@ -7,11 +7,11 @@
 Coin::Coin(SDL_Renderer *renderer, int w, int h, int initPosX, int initPosY) {
 
 
-    coinTexure = IMG_LoadTexture(renderer, "./assets/coin-sprite.png");
+    coinTexture = IMG_LoadTexture(renderer, "./assets/coin-sprite.png");
     colCoin = 0, rowCoin = 0;
     wCoinS = 0, hCoinS = 0;
     wIC = 0, hIC = 0;
-    SDL_QueryTexture(coinTexure, NULL, NULL, &wIC, &hIC);
+    SDL_QueryTexture(coinTexture, NULL, NULL, &wIC, &hIC);
 
     wCoinS = wIC / 6;
     hCoinS = hIC;
@@ -24,6 +24,13 @@ Coin::Coin(SDL_Renderer *renderer, int w, int h, int initPosX, int initPosY) {
 
 }
 
+Coin::~Coin()
+{
+    //delete[] coinTexture;
+    SDL_DestroyTexture(coinTexture);
+    IMG_Quit();
+}
+
 void Coin::update(SDL_Renderer *renderer, Uint32 time) {
 
 
@@ -33,13 +40,14 @@ void Coin::update(SDL_Renderer *renderer, Uint32 time) {
         lastUpdate = time;
 
     }
-    SDL_RenderCopy(renderer, coinTexure, &positionImgCoin, &positionScreenCoin);
+    SDL_RenderCopy(renderer, coinTexture, &positionImgCoin, &positionScreenCoin);
 
 }
 
 void Coin::destroy() {
-    SDL_DestroyTexture(coinTexure);
+    SDL_DestroyTexture(coinTexture);
     IMG_Quit();
+    delete this;
 }
 
 const SDL_Rect &Coin::getPositionScreenCoin() const {
