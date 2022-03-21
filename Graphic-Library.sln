@@ -49,6 +49,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "12-Trump-Coin-Collector-Gam
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "13-Opengl-Exam", "13-Opengl-Exam\13-Opengl-Exam.vcxproj", "{41DBE092-B6CC-4F45-9164-47FF881D7AD5}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "14-Brute-Follower-AI", "14-Brute-Follower-AI\14-Brute-Follower-AI.vcxproj", "{3AC3716D-B0F8-4B69-B5AE-E7FD6054F7FA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -225,6 +227,14 @@ Global
 		{41DBE092-B6CC-4F45-9164-47FF881D7AD5}.Release|x64.Build.0 = Release|x64
 		{41DBE092-B6CC-4F45-9164-47FF881D7AD5}.Release|x86.ActiveCfg = Release|Win32
 		{41DBE092-B6CC-4F45-9164-47FF881D7AD5}.Release|x86.Build.0 = Release|Win32
+		{3AC3716D-B0F8-4B69-B5AE-E7FD6054F7FA}.Debug|x64.ActiveCfg = Debug|x64
+		{3AC3716D-B0F8-4B69-B5AE-E7FD6054F7FA}.Debug|x64.Build.0 = Debug|x64
+		{3AC3716D-B0F8-4B69-B5AE-E7FD6054F7FA}.Debug|x86.ActiveCfg = Debug|Win32
+		{3AC3716D-B0F8-4B69-B5AE-E7FD6054F7FA}.Debug|x86.Build.0 = Debug|Win32
+		{3AC3716D-B0F8-4B69-B5AE-E7FD6054F7FA}.Release|x64.ActiveCfg = Release|x64
+		{3AC3716D-B0F8-4B69-B5AE-E7FD6054F7FA}.Release|x64.Build.0 = Release|x64
+		{3AC3716D-B0F8-4B69-B5AE-E7FD6054F7FA}.Release|x86.ActiveCfg = Release|Win32
+		{3AC3716D-B0F8-4B69-B5AE-E7FD6054F7FA}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -251,6 +261,7 @@ Global
 		{8CB94B41-268F-435B-83DE-E4C3FF6C21D4} = {179C5F77-00E9-4DF3-AEB6-611A57012233}
 		{7256CFD9-382D-4BE9-8EF3-AF51A4D516BD} = {179C5F77-00E9-4DF3-AEB6-611A57012233}
 		{41DBE092-B6CC-4F45-9164-47FF881D7AD5} = {179C5F77-00E9-4DF3-AEB6-611A57012233}
+		{3AC3716D-B0F8-4B69-B5AE-E7FD6054F7FA} = {179C5F77-00E9-4DF3-AEB6-611A57012233}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B7E63605-2BDF-400D-9E40-687CDE2CDEDB}
