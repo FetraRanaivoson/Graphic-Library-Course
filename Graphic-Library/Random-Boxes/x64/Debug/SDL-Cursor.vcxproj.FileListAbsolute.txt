@@ -1,1 +1,0 @@
-E:\ISI\COURS\GAME SESSION\Lib-Graphique\j03-lib-graphique-aout-2021-fetra\Graphic-Library\SDL-Cursor\x64\Debug\SDL-Cursor.vcxproj.CopyComplete

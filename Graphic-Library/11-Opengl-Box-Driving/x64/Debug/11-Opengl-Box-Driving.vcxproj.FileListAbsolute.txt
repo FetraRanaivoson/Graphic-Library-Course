@@ -1,1 +1,0 @@
-E:\ISI\COURS\GAME SESSION\Lib-Graphique\j03-lib-graphique-aout-2021-fetra\Graphic-Library\11-Opengl-Box-Driving\x64\Debug\11-Opengl-Box-Driving.vcxproj.CopyComplete

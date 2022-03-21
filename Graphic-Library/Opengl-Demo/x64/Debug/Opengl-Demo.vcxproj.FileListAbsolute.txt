@@ -1,1 +1,0 @@
-E:\ISI\COURS\GAME SESSION\Lib-Graphique\j03-lib-graphique-aout-2021-fetra\Graphic-Library\Opengl-Demo\x64\Debug\Opengl-Demo.vcxproj.CopyComplete

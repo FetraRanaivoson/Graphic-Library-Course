@@ -1,1 +1,0 @@
-E:\ISI\COURS\GAME SESSION\Lib-Graphique\j03-lib-graphique-aout-2021-fetra\Graphic-Library\10-Opengl-City-Boxes\x64\Debug\10-Opengl-City-Boxes.vcxproj.CopyComplete
